@@ -1,0 +1,71 @@
+user
+	-userId (PK)
+	-userNameFirst
+	-userNameMI
+	-userNameLast
+	-userTitle
+	-userEmail
+	-userPhone
+	-userSalt
+	-userHash
+	-userAddress (FK to address)
+
+application
+	-appId (PK)
+	-appNameFirst
+	-appNameMI
+	-appNameLast
+	-appDate
+	-appAddress (FK to address)
+	-appPhone
+	-appEmail
+	-appDateAvailable
+	-appDesiredSalary
+	-appPositionAppliedFor (FK to job)
+	-appHearAbout
+	-appAuthorizedInUS
+	-appSecurityClearance
+	-appVeteran
+	-appFelonReason (we can assume if this field is not NULL then the user is a felon)
+	-appResumeFileName
+	-appResumeContent
+	-appCoverLetterFileName
+	-appCoverLetterContent
+
+reference
+	-refId (PK)
+	-refName
+	-refRelationship
+	-refCompany
+	-refPhone
+	-refAddress (FK to address)
+
+previousEmployment
+	-peId (PK)
+	-peAppId (FK to application)
+	-peCompany
+	-pePhone
+	-peAddress (FK to address)
+	-peSupervisor
+	-peTitle
+	-peStartSalary
+	-peEndSalary
+	-peResponsibilities
+	-peStartDate
+	-peEndDate
+	-peReasonForLeaving
+	-peMayContact
+
+job
+	-jobId (PK)
+	-jobName
+	-isOpen
+
+address
+	-addressId (PK)
+	-addressLine1
+	-addressLine2
+	-addressCity
+	-addressState
+	-addressZip
+	-addressCountry

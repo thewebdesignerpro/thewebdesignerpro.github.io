@@ -1,0 +1,10 @@
+.DS_Store
+/vendor
+.sass-cache/
+venv
+flask
+*.css
+*.css.map
+*.pyc
+/static/files
+/static/assets/css

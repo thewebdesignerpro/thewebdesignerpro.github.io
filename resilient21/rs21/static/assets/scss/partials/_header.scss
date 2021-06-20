@@ -1,0 +1,93 @@
+.nav-up {
+	top: -50px;
+}
+.navbar{
+	margin: 0 auto;
+	background: white!important;
+	transition: all 1s ease-in-out;
+
+	.logo_brand{
+		width: auto;
+		height: 50px;
+	}
+	.navbar-toggler-icon{
+		background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/></svg>");
+	}
+	.nav-link{
+		font-family: $light-font;
+		text-transform: uppercase;
+		padding-right: 25px;
+		color:rgb(33,33,33);
+		letter-spacing: 1px;
+		line-height: 1.3rem;
+	}
+
+	@media (min-width: 576px) {
+		width: 540px;
+		max-width: 100%;
+		// background: -webkit-linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.8) 100%);
+		// background: -o-linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.8) 100%);
+		// background: linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.8) 100%);		
+	}
+
+	@media (min-width: 768px) {
+		width: 720px;
+		max-width: 100%;
+	}
+
+	@media (min-width: 992px) {
+		width: 960px;
+		max-width: 100%;
+	}
+
+	@media (min-width: 1200px) {
+		width: 1140px;
+		max-width: 100%;
+	}
+
+	&.home {
+		width: 100%;
+	}
+
+	&.scrolled {
+		background:white;
+		box-shadow: 0 10px 10px -10px $off-black;
+	}
+
+	&.showApplication {
+		width: 100%;
+	}
+	
+	.contact-btn:hover{
+		.nav-link{
+		color: $red;
+		font-weight: 900;
+		}
+	}
+	.story-btn:hover{
+		.nav-link{
+		color: $teal;
+		font-weight: 900;
+		}	
+	}
+	.help-btn:hover{
+		.nav-link{
+		color: $orange;
+		font-weight: 900;		
+		}		
+	}
+	.careers-btn:hover{
+		.nav-link{
+		color: $blue;
+		font-weight: 900;
+		}		
+	}
+
+	.signout-btn {
+		.nav-link {
+			cursor: pointer;
+			transition: all 300ms linear;
+			font-weight: 900;
+		}
+	}
+}

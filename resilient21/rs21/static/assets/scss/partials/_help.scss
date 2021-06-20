@@ -1,0 +1,146 @@
+.help-page {
+    background: linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.5) 100%), url("../img/dot.png") repeat;
+    @media (min-width: 576px) {
+        .fadetowhite:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: fixed;
+            top: 0;
+            background: linear-gradient(transparent 70%, white);
+            width: 540px;
+            max-width: 100%;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            padding-right: 15px;
+            padding-left: 15px;
+            pointer-events: none;
+        }
+    }
+    @media (min-width: 768px) {
+        .fadetowhite:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: fixed;
+            top: 0;
+            background: linear-gradient(transparent 70%, white);
+            width: 720px;
+            max-width: 100%;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
+    @media (min-width: 992px) {
+        .fadetowhite:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: fixed;
+            top: 0;
+            background: linear-gradient(transparent 70%, white);
+            width: 960px;
+            max-width: 100%;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .fadetowhite:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: fixed;
+            top: 0;
+            background: linear-gradient(transparent 70%, white);
+            width: 1140px;
+            max-width: 100%;
+            left: 0;
+            margin: 0 auto;
+            right: 0;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
+    .img-header {
+        width: 25%;
+        min-width: 200px;
+        height: auto;
+    }
+    .container {
+        background: white;
+    }
+    .img-border {
+        border-left: 2px solid #333;
+        border-right: 2px solid #333;
+        border-radius: 10px;
+        border-color: #aaa;
+    }
+    // .parallax-help-0 {
+    //     background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/city.jpeg");
+    //     h1 {
+    //         padding-top: 100px;
+    //         color: white;
+    //     }
+    // }
+    .parallax-help-1 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/help/doctor.jpg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .parallax-help-2 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/help/crime.jpg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .parallax-help-3 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/help/board.jpg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .parallax-help-4 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/infra.jpg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .parallax-help-5 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/help/fireman.jpg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .parallax-help-6 {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("../img/city.jpeg");
+        h4 {
+            padding-top: 100px;
+            color: white;
+        }
+    }
+    .img-fluid {
+        height: auto;
+        max-width: 75%;
+    }
+    hr {
+        margin-bottom: 29px;
+    }
+}

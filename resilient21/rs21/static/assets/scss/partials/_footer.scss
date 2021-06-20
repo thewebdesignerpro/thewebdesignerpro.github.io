@@ -1,0 +1,31 @@
+.footer-page{
+	background-color: $off-black;
+/*	padding-top: 10px;
+	padding-bottom: 10px;*/
+
+	.footer-content{
+		padding: 5px;
+		font-size: 1rem;
+	}
+	.container{
+		min-height: 50px;
+		max-height: 150px;
+		background-color: $off-black;
+	}
+	a{
+		color: $off-white;
+
+		&:hover{
+			color: $off-white;
+		}
+	}
+	.fa-facebook-official,.fa-linkedin-square,.fa-twitter-square{
+		color:$off-white;
+		font-size: 2rem;
+		padding: 10px 0;
+	}
+	.copyright{
+		font-size: .8rem;
+		color: $off-white;
+	}
+}

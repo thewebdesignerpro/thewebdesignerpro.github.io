@@ -1,0 +1,132 @@
+// VARIABLES.SCSS
+@import "variables/variables";
+
+body{
+	text-align: center;
+	font-family: "Roboto",Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: $light-font;
+	width: 100%;
+	height: 100%;
+	font-size: 1rem;
+	overflow-x:hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	// font-family: $bold-font;
+	font-family: "Roboto";
+	font-weight: $bold-font;
+}
+hr {
+	border-color: #aaa;
+	width: 25%;
+	min-width: 200px;
+
+	&::before {
+		content: "";
+		display: block;
+		position: relative;
+		top: -2px;
+		left: -1px;
+		width: calc(100% - 1px);
+		height: 3px;
+		border-left: 2px solid #333;
+		border-right: 2px solid #333;
+		border-radius: 10px;
+	}
+}
+.container{
+	min-height: 100vh;
+
+	.page-start{
+		padding-top: 150px;
+	}
+	.page-content{
+		margin-top: 100px;
+	}
+}
+.parallax-lg{
+	min-height: 500px !important;
+	background-attachment: fixed !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+.parallax-md{
+	min-height: 250px !important;
+	background-attachment: fixed !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+.parallax-sm{
+	min-height: 150px !important;
+	background-attachment: fixed !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}	
+.content-box{
+-webkit-box-shadow: inset 0 20px 20px -20px rgba(15,17,18,1);
+-moz-box-shadow: inset 0 20px 20px -20px rgba(15,17,18,1);
+box-shadow: inset 0 20px 20px -20px rgba(15,17,18,1);
+
+	.text-content{
+		padding-top:100px;
+	}
+}
+.sub-text{
+	// font-family: $regular-font;
+	font-family: "Roboto";
+	font-weight: $regular-font;
+}
+// .nav-item:hover a{
+// 	color: steelblue;
+// }
+.end-content{
+	padding-bottom: 100px;
+}
+
+.fade{
+	opacity: 1;
+}
+
+/* The starting CSS styles for the enter animation */
+.fade.ng-enter {
+  transition:0.75s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+
+.fade.ng-leave {
+  transition:0.25s linear all;
+  opacity:1;
+}
+.fade.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+
+// COMPONENTS.SCSS
+@import "partials/home";
+@import "partials/header";
+@import "partials/careers";
+@import "partials/contact";
+@import "partials/help";
+@import "partials/application";
+@import "partials/story";
+@import "partials/top-button";
+@import "partials/employee";
+@import "partials/footer";

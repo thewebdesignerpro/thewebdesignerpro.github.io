@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Clouds</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+
+			body {
+				background-color: #122a44;
+				//background-color: #1f73aa;
+//				background-color: #eeb050;
+				margin: 0px;
+				overflow: hidden;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+				text-align:center;
+			}
+
+			a {
+				color:#0078ff;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<script type="text/javascript" src="js/three.min.js"></script>
+		<script type="text/javascript" src="js/Detector.js"></script>
+
+		<script id="vs" type="x-shader/x-vertex">
+
+			varying vec2 vUv;
+
+			void main() {
+
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+			}
+
+		</script>
+
+		<script id="fs" type="x-shader/x-fragment">
+
+			uniform sampler2D map;
+
+			uniform vec3 fogColor;
+			uniform float fogNear;
+			uniform float fogFar;
+
+			varying vec2 vUv;
+
+			void main() {
+
+				float depth = gl_FragCoord.z / gl_FragCoord.w;
+				float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+				gl_FragColor = texture2D( map, vUv );
+				gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+				gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+
+			}
+
+		</script>
+
+		<script type="text/javascript">
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container;
+			var camera, scene, renderer;
+			var mesh, mesh2, mesh3, geometry, geom, material, mater;
+
+			var mouseX = 0, mouseY = 0;
+			var start_time = Date.now();
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			init();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				// Bg gradient
+
+				var canvas = document.createElement( 'canvas' );
+				canvas.width = 32;
+				canvas.height = window.innerHeight;
+
+				var context = canvas.getContext( '2d' );
+
+				var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
+//				gradient.addColorStop(0, "#112233");
+//				gradient.addColorStop(0.5, "#77bbf4");	
+				gradient.addColorStop(0, "#000000");
+				//gradient.addColorStop(0, "#052288");
+				//gradient.addColorStop(0, "#dd5510");
+				//gradient.addColorStop(0.5, "#112b42");
+				gradient.addColorStop(0.5, "#122a44");
+				//gradient.addColorStop(0.5, "#1f73aa");
+				//gradient.addColorStop(0.5, "#eeb050");
+
+				context.fillStyle = gradient;
+				context.fillRect(0, 0, canvas.width, canvas.height);
+
+				container.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
+				container.style.backgroundSize = '32px 100%';
+
+				//
+
+				camera = new THREE.PerspectiveCamera( 26, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera.position.z = 6000;
+
+				scene = new THREE.Scene();
+
+
+//var light = new THREE.HemisphereLight( 0x8090a0, 0x162e48, 2 ); 
+var light = new THREE.SpotLight( 0x8090a0, 5 );
+light.castShadow = false;
+light.position.set(100, 300, 4400);
+scene.add( light );
+
+				geometry = new THREE.Geometry();
+				//geometry = new THREE.BufferGeometry();
+				
+				geom = new THREE.Geometry();
+
+				//var texture = THREE.ImageUtils.loadTexture( 'img/cloud10.png', null, animate );
+				//var texture = THREE.ImageUtils.loadTexture( 'img/cloud10.png', undefined, animate );
+				var texture = THREE.ImageUtils.loadTexture( 'imj/ulap.png', undefined, animate );
+				var tex2 = THREE.ImageUtils.loadTexture( 'imj/arw2.png' );
+				var tex4 = THREE.ImageUtils.loadTexture( 'imj/moon.jpg' );
+				//var tex4 = THREE.ImageUtils.loadTexture( 'img/mars1.jpg' );
+				//var texture = THREE.ImageUtils.loadTexture( 'img/usok3.png', null, animate );
+				texture.magFilter = THREE.LinearMipMapLinearFilter;
+				//tex2.magFilter = THREE.LinearMipMapLinearFilter;
+				//texture.minFilter = THREE.LinearMipMapLinearFilter;
+
+				//var fog = new THREE.Fog( 0x112b40, -100, 3000 );
+				//var fog = new THREE.Fog( 0x122a44, -10, 2800 );
+				var fog = new THREE.Fog( 0x162e48, -10, 2800 );
+				//var fog = new THREE.Fog( 0x1f73aa, -10, 2800 );
+				//var fog = new THREE.Fog( 0xeeb050, -10, 2800 );
+				//var fog = new THREE.FogExp2( 0x112b40, 0.00025 );
+
+				material = new THREE.ShaderMaterial( {
+					uniforms: {
+
+						"map": { type: "t", value: texture },
+						"fogColor" : { type: "c", value: fog.color },
+						"fogNear" : { type: "f", value: fog.near },
+						"fogFar" : { type: "f", value: fog.far },
+
+					},
+					vertexShader: document.getElementById( 'vs' ).textContent,
+					fragmentShader: document.getElementById( 'fs' ).textContent,
+					depthWrite: false,
+					depthTest: false,
+					transparent: true
+				} );
+
+
+/*		var star = new THREE.Geometry();
+		for ( var i = 0; i < 3000; i ++ ) {
+		var vertex = new THREE.Vector3();
+			//do {
+				vertex.x = 3800 * Math.random() - 1900;
+				vertex.y = 2800 * Math.random() - 1200;
+				vertex.z = -8000 * Math.random() + 4000;
+			//} while ( vertex.length() < 1000 );
+			star.vertices.push( vertex );
+		}
+		star.computeBoundingSphere();
+		var mater3 = new THREE.PointCloudMaterial( { size: 8, fog: false } );
+		//var mater3 = new THREE.MeshLambertMaterial( { map: tex2, emmissive: 0xffffff, side: THREE.FrontSide, depthWrite: false, depthTest: false, opacity: 0.9, transparent: false, fog: false } );		
+		var stars = new THREE.PointCloud( star, mater3 );
+		scene.add( stars );*/
+		
+			var particles = 4000;
+
+				var geoms = new THREE.BufferGeometry();
+
+				var poss = new Float32Array( particles * 3 );
+				var colors = new Float32Array( particles * 3 );
+				var color = new THREE.Color();
+				for ( var i = 0; i < poss.length; i += 3 ) {
+
+					// positions
+
+					var x = Math.random() * 3800 - 1900;
+					var y = Math.random() * 2800 - 1200;
+					var z = Math.random() * -6000 + 3000;
+
+					poss[ i ]     = x;
+					poss[ i + 1 ] = y;
+					poss[ i + 2 ] = z;
+
+					// colors
+
+					var vx = ( x / 1900 ) + 0.5;
+					var vy = ( y / 1600 ) + 0.5;
+					var vz = ( z / 3000 ) + 0.5;
+
+					color.setRGB( vx, vy, vz );
+
+					colors[ i ]     = color.r;
+					colors[ i + 1 ] = color.g;
+					colors[ i + 2 ] = color.b;
+
+				}
+
+				geoms.addAttribute( 'position', new THREE.BufferAttribute( poss, 3 ) );
+				geoms.addAttribute( 'color', new THREE.BufferAttribute( colors, 3 ) );
+
+				geoms.computeBoundingSphere();
+				var maters = new THREE.PointCloudMaterial( { size: 8, vertexColors: THREE.VertexColors } );
+				stars = new THREE.PointCloud( geoms, maters );
+				scene.add( stars );
+		
+		
+				
+				//var mater = new THREE.MeshLambertMaterial( { map: texture, emissive: 0xffffff, side: THREE.FrontSide, depthWrite: false, depthTest: false, opacity: 0.9, transparent: true, fog: true } );
+				var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );
+				var plane = new THREE.Mesh( new THREE.PlaneGeometry( 80, 80 ) );
+				//var plane = new THREE.Mesh( new THREE.BufferGeometry() );
+				//var plane = new THREE.BufferGeometry();
+				//var plane2 = new THREE.Mesh( new THREE.PlaneGeometry( 32, 32 ) );
+				//var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 32 ) );
+
+				//var plw = 80;
+				//var vertexPositions = [];
+
+				for ( var i = 0; i < 6000; i++ ) {
+
+					plane.position.x = Math.random() * 1500 - 750;
+					//plane.position.x = Math.random() * 1000 - 500;
+					//plane.position.y = - Math.random() * Math.random() * 200 - 15;
+					plane.position.y = -Math.random() * 190 + 20;
+					plane.position.z = i;					
+					
+/*					var px = Math.random() * 1500 - 750;
+					var py = -Math.random() * 190 + 20;
+					var pz = i;
+					
+vertexPositions=[ [px,py,pz],[px+plw,py,pz],[px+plw,py+plw,pz],[px+plw,py+plw,pz],[px,py+plw,pz],[px,py,pz] ];					
+				var vertices = new Float32Array( vertexPositions.length * 3 );				
+				for ( var i = 0; i < vertexPositions.length; i++ )
+{
+	vertices[ i*3 + 0 ] = vertexPositions[i][0];
+	vertices[ i*3 + 1 ] = vertexPositions[i][1];
+	vertices[ i*3 + 2 ] = vertexPositions[i][2];
+}
+plane.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );*/
+								
+					plane.rotation.z = Math.random() * Math.PI;
+					plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+
+					
+					//THREE.GeometryUtils.merge( geometry, plane );
+					plane.updateMatrix();
+					geometry.merge( plane.geometry, plane.matrix );		
+				}
+				/*for ( var i = 0; i < 5000; i++ ) {
+					plane2.position.x = Math.random() * 3800 - 1900;
+					plane2.position.y = 2800 * Math.random() - 1200;
+					plane2.position.z = -2800 * Math.random() + 1200;
+					//plane2.rotation.z = Math.random() * Math.PI;
+					plane2.scale.x = plane2.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+					plane2.updateMatrix();
+					geom.merge( plane2.geometry, plane2.matrix );		
+				}*/
+
+
+				var bufferGeometry = new THREE.BufferGeometry().fromGeometry( geometry );
+				
+				//material.wireframe = true;
+				//mesh = new THREE.Mesh( geometry, material );
+				mesh = new THREE.Mesh( bufferGeometry, material );
+				mesh.position.z = 0;
+				scene.add( mesh );
+
+				//mesh2 = new THREE.Mesh( geometry, material );
+				//mesh2 = new THREE.Mesh( bufferGeometry, material );
+				mesh2 = mesh.clone();
+				mesh2.position.z = - 6000;
+				scene.add( mesh2 );
+				
+				//mesh3 = new THREE.Mesh( geom, mater );
+				//mesh3.position.z = -800;
+				//scene.add( mesh3 );				
+
+		var mater4 = new THREE.MeshLambertMaterial( { map: tex4, emissive: 0x0e2640, side: THREE.FrontSide, wrapAround: true, overdraw: 0.5, fog: false } );
+		//var mater4 = new THREE.MeshLambertMaterial( { map: tex4, emissive: 0xffffff, side: THREE.FrontSide, wrapAround: true, overdraw: 0.5, fog: false } );
+		//var mater4 = new THREE.MeshLambertMaterial( { map: tex4, emissive: 0xffdd44, side: THREE.FrontSide, wrapAround: true, overdraw: 0.5, fog: false } );
+		//var mater4 = new THREE.MeshLambertMaterial( { map: tex4, side: THREE.FrontSide, wrapAround: true, overdraw: 0.5, fog: false } );
+		mater4.wrapRGB.set( 0.35, 0.35, 0.35 );
+		var mun = new THREE.Mesh( new THREE.SphereGeometry( 120, 24, 24 ), mater4 );
+		//var mun = new THREE.Mesh( new THREE.SphereGeometry( 30, 24, 24 ), mater4 );
+		//var mun = new THREE.Mesh( new THREE.SphereGeometry( 45, 24, 24 ), mater4 );
+		mun.position.set(100, 150, 4000);
+		mun.rotation.y -= 1.2;
+		//mun.castShadow = false;
+		//mun.receiveShadow = true;
+		scene.add( mun );				
+		var glw = new THREE.PlaneGeometry( 700, 700 );
+		//var glw = new THREE.PlaneGeometry( 1050, 1050 );
+		//var glw = new THREE.PlaneGeometry( 700, 700 );
+		//var glw = new THREE.CircleGeometry( 250,32 );
+		mater4 = new THREE.MeshLambertMaterial( { map: tex2, color: 0xccddee, emissive: 0xccddee, side: THREE.FrontSide, opacity: 0.9, transparent: true, fog: false } );
+		//mater4 = new THREE.MeshLambertMaterial( { map: tex2, color: 0xccddee, emissive: 0xffffff, side: THREE.FrontSide, opacity: 0.9, transparent: true, fog: false } );
+		//mater4 = new THREE.MeshLambertMaterial( { map: tex2, color: 0xccddee, emissive: 0xffdd44, side: THREE.FrontSide, opacity: 0.9, transparent: true, fog: false } );
+		var arw = new THREE.Mesh( glw, mater4 );
+		arw.position.set(100, 150, 4000);
+		arw.castShadow = false;
+		arw.receiveShadow = false;
+		scene.add( arw );		
+light.lookAt(mun.position);
+				
+				renderer = new THREE.WebGLRenderer( { antialias: false, alpha: true } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = ( event.clientX - windowHalfX ) * 0.1;
+				mouseY = ( event.clientY - windowHalfY ) * 0.15;
+
+			}
+
+			function onWindowResize( event ) {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				var timer = Date.now();
+				position = ( ( timer - start_time ) * 0.03 ) % 8000;
+
+				if (mouseY==0) {
+					camera.position.y += Math.sin(timer*0.0005)*4;
+				}
+				
+				camera.position.x += ( mouseX - camera.position.x ) * 0.1;
+				camera.position.y += ( - mouseY - camera.position.y ) * 0.1;
+				//if (camera.position.z<-5000) start_time = Date.now();
+				//camera.position.z = - (position*10) + 8000;
+				if (mesh.position.z<6000) {
+					mesh.position.z += 7;
+				} else {
+					mesh.position.z = 0;
+				}				
+				if (mesh2.position.z<0) {
+					mesh2.position.z += 7;
+				} else {
+					mesh2.position.z = -6000;
+				}
+				
+//				mesh3.position.z += 3;				
+				
+//console.log(position);
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
+</html>

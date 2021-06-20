@@ -1,0 +1,66 @@
+.application {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -50vw;
+    padding: 3rem;
+    width: 50vw;
+    background: #fff;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 1s;
+
+    @media screen and (max-width: 768px) {
+        right: -100vw;
+        width: 100vw;
+    }
+
+    &.show {
+        right: 0;
+    }
+    .error {
+        color: $red;
+    }
+    h4 {
+        margin-top: 12%;
+        padding-bottom: 15px;
+    }
+    .form-group {
+        padding-top: 15px;
+    }
+    .col-form-legend {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    hr {
+        margin-bottom: 2rem;
+    }
+    .uploads {
+        padding-top: 5%;
+    }
+
+    .close-btn {
+        position: fixed;
+        top: 6rem;
+        right: calc(-50vw + 2rem);
+        cursor: pointer;
+        z-index: 1000;
+
+        transition: all 1s;
+
+        &.show-btn {
+            right: 2rem;
+        }
+    }
+
+    .alert {
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.input-group-addon {
+    cursor: pointer;
+    cursor: hand;
+}

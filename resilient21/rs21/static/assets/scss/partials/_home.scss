@@ -1,0 +1,165 @@
+#rs21Vis {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
+}
+
+.homePage {
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    .intro-body {
+        vertical-align: middle;
+        height: 100%;
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            .row {
+                flex-grow: 1;
+                align-items: flex-end;
+            }
+        }
+        @media (min-width: 576px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 992px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+        }
+    }
+    h1 {
+        display: inline-block;
+        // font-family: $light-font;
+        font-family: "Roboto";
+        font-weight: $light-font;
+        span {
+            font-weight: $bold-font;
+        }
+        color:transparent;
+    }
+    .btn-secondary {
+        border: none;
+        font-family: "Roboto";
+        font-weight: $light-font;
+        font-size: 1.5rem;
+        background: rgba(255,255,255,.8);
+        &:hover {
+            font-weight: $bold-font;
+            background: rgba(255,255,255,.8);
+            border-color: $off-black;
+        }
+    }
+}
+
+@keyframes jiggle {
+    from {
+        top: 0px;
+    }
+    to {
+        top: 20px;
+    }
+}
+
+// these are meant to be merged into whatever's already there 
+.arrow-wrap {
+    margin-bottom: 75px;
+    position: relative;
+    display: inline-block;
+    animation-name: jiggle;
+    animation-duration: 2s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    color: $off-black;
+    font-size: 2rem;
+}
+
+#slide-2,
+#call-to-action {
+    align-items: flex-end;
+}
+
+#call-to-action {
+    opacity: 0;
+    align-items: center;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+#title1 {
+    position: absolute;
+    height: auto;
+    width: auto;
+}
+
+.fade-1 {
+    -webkit-transition: all 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    color: black!important;
+    // font-size: 2rem!important;
+    background: rgba(255, 255, 255, .8);
+}
+
+.bold-1 {
+    -webkit-transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-family: "Roboto";
+    font-weight: $bold-font;
+    color: black!important;
+    font-size: 2rem!important;
+}
+
+.header-1 {
+    -webkit-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0!important;
+}
+
+.header-2 {
+    -webkit-transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1!important;
+}
+
+.action-btn {
+    -webkit-transition: all 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 1s;
+    -webkit-transition-delay: 1s;
+    opacity: 1!important;
+}

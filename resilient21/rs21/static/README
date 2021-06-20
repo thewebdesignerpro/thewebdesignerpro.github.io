@@ -1,0 +1,40 @@
+//DIRECTORY STRUCTURE
+app/
+----- shared/  
+---------- header/
+--------------- headerDirective.js
+--------------- headerView.html
+---------- footer/
+--------------- footerDirective.js
+--------------- footerView.html
+---------- content/
+--------------- footerDirective.js
+--------------- footerView.html
+----- components/   
+---------- home/
+--------------- homeController.js
+--------------- homeService.js
+--------------- homeView.html
+--------------- home.scss
+---------- who_we_help/
+--------------- wwhController.js
+--------------- wwhService.js
+--------------- wwhView.html
+--------------- wwh.scss
+---------- contact_us/
+--------------- contactController.js
+--------------- contactService.js
+--------------- contactView.html
+--------------- contact.scss
+---------- careers/
+--------------- careersController.js
+--------------- careersService.js
+--------------- careersView.html
+--------------- careers.scss
+assets/
+----- img/
+----- css/
+----- scss/
+----- js/
+----- libs/    
+index.html

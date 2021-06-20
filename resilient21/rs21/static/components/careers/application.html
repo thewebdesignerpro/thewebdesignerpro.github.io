@@ -1,0 +1,568 @@
+<div class="application" ng-class="{'show': showApplication}" ng-style="{'top': navHeight}">
+    <i class="fa fa-fw fa-lg fa-close close-btn" ng-click="showApplication = false" ng-class="{'show-btn': showApplication}"></i>
+    <div class="row">
+        <div class='col-12'>
+            <form name="form" novalidate>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>Applicant Information</h4>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div class="form-group">
+                        <div class="row form-group">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" ng-model="application.appnamefirst" name="fName" maxlength="64" required="">
+                                <small ng-show="form.fName.$untouched || form.fName.$valid" class="form-text text-muted">First Name</small>
+                                <small ng-show="form.$submitted || form.fName.$touched">
+                                <div ng-show="form.fName.$error.required" class="form-text error">Tell us your first name.</div>
+                            </small>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="application.appnamemiddle" maxlength="64">
+                                <small class="form-text text-muted">Middle</small>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" ng-model="application.appnamelast" name="lName" required="" maxlength="64">
+                                <small ng-show="form.lName.$untouched || form.lName.$valid" class="form-text text-muted">Last</small>
+                                <small ng-show="form.$submitted || form.lName.$touched">
+                            <div ng-show="form.lName.$error.required" class="form-text error">Tell us your last name.</div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" ng-model="application.addressline1" name="address1" required="" maxlength="128">
+                                <small ng-show="form.address1.$untouched || form.address1.$valid" class="form-text text-muted">Street Address</small>
+                                <small ng-show="form.$submitted || form.address1.$touched">
+                            <div ng-show="form.address1.$error.required" class="form-text error">Tell us your address.</div>
+                            </small>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="application.addressline2" maxlength="128">
+                                <small class="form-text text-muted">Unit #</small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="application.addresscity" name="city" required="" maxlength="128">
+                                <small ng-show="form.city.$untouched || form.city.$valid" class="form-text text-muted">City</small>
+                                <small ng-show="form.$submitted || form.city.$touched">
+                            <div ng-show="form.city.$error.required" class="form-text error">Tell us your city.</div>
+                            </small>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="application.addressstate" name="state" ng-maxlength="2" ng-minlength="2" required="" maxlength="2">
+                                <small ng-show="form.state.$untouched || form.state.$valid" class="form-text text-muted">State</small>
+                                <small ng-show="form.$submitted || form.state.$touched">
+                            <div ng-show="form.state.$error.required || form.state.$invalid" class="form-text error">2 letter abbreviation.
+                            </div>
+                            </small>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" class="form-control" ng-model="application.addresszip" name="zip" ng-maxlength="5" ng-minlength="5" required="" maxlength="5">
+                                <small ng-show="form.zip.$untouched || form.zip.$valid" class="form-text text-muted">Zip Code</small>
+                                <small ng-show="form.$submitted || form.zip.$touched">
+                            <div ng-show="form.zip.$error.required || form.zip.$invalid" class="form-text error">Please use a valid zip code.
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" ng-model="application.appphone" name="phone" maxlength="20" required="">
+                                <small ng-show="form.phone.$untouched || form.phone.$valid" class="form-text text-muted">Phone</small>
+                                <small ng-show="form.$submitted || form.phone.$touched">
+                            <div ng-show="form.phone.$error.required" class="form-text error">Give us your digits.
+                            </div>
+                            </small>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" ng-model="application.appemail" name="email" required="" maxlength="64">
+                                <small ng-show="form.email.$untouched || form.email.$valid" class="form-text text-muted">Email</small>
+                                <small ng-show="form.$submitted || form.email.$touched">
+                            <div ng-show="form.email.$error.required || form.email.$invalid-email" class="form-text error">Use the format: {{application.appnamefirst.length > 0 ? application.appnamefirst : "futureyou" | lowercase}}@rs21.io
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" value="{{showPosition();}}" ng-model="application.appjobtitle" readonly>
+                                <small class="form-text text-muted">Position Applied For</small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" ng-model="application.appdateavailable" name="dateavail" required="">
+                                <small ng-show="form.dateavail.$untouched || form.dateavail.$valid" class="form-text text-muted">Date Available</small>
+                                <small ng-show="form.$submitted || form.dateavail.$touched">
+                            <div ng-show="form.dateavail.$error.required" class="form-text error">Tell us when you can start!
+                            </div>
+                        </small>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" ng-model="application.appdesiredsalary" name="sal" required="" maxlength="10">
+                                <small ng-show="form.sal.$untouched || form.sal.$valid" class="form-text text-muted">Desired Salary</small>
+                                <small ng-show="form.$submitted || form.sal.$touched">
+                            <div ng-show="form.sal.$error.required" class="form-text error">Please enter a number for your salary.
+                            </div>
+                        </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <div class="col-md-4" ng-repeat="link in links track  by $index">
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" class="form-control" ng-model="application.links[$index].linkurl" name="linkurl{{$index}}" required="" maxlength="256">
+                                        <div class="input-group-addon" ng-click="remLink()"><i class="fa fa-minus"></i></div>
+                                    </div>
+                                    <small ng-show="form.linkurl{{$index}}.$untouched || form.linkurl{{$index}}.$valid" class="form-text text-muted">{{link.labelName}}</small>
+                                    <small ng-show="form.$submitted || form.linkurl{{$index}}.$touched">
+                                <div ng-show="form.linkurl{{$index}}.$error.required && form.linkurl{{$index}}.$touched" class="form-text error">Tell us about your work.
+                                </div>
+                            </small>
+                                </div>
+                                <div class="col-md-4" ng-hide="links.length >= 3">
+                                    <button type="button" class="btn btn-outline-success float-left" ng-click="addLink()"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row form-group'>
+                            <div class="col-md-12">
+                                <textarea class="form-control" rows="3" ng-model="application.apphearabout" name="how" required="" maxlength="2048"></textarea>
+                                <small ng-show="form.how.$untouched || form.how.$valid" class="form-text text-muted">How Did You Hear About Us?</small>
+                                <small ng-show="form.$submitted || form.how.$touched">
+                            <div ng-show="form.how.$error.required" class="form-text error">We really want to know!
+                            </div>
+                        </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <legend class="col-form-legend">Are You a Veteran?</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio1" type="radio" class="custom-control-input" value="true" ng-model="application.appveteran" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio1" type="radio" class="custom-control-input" value="false" ng-model="application.appveteran" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio1.$invalid">
+                            <div ng-show="form.radio1.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                            <div class="col-md-6">
+                                <legend class="col-form-legend">Are You Authorized to Work in the US?</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio2" type="radio" class="custom-control-input" value="true" ng-model="application.appauthorizedinus" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio2" type="radio" class="custom-control-input" value="false" ng-model="application.appauthorizedinus" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio2.$invalid">
+                            <div ng-show="form.radio2.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <legend class="col-form-legend">Have you ever been convicted of a felony?</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio3" type="radio" class="custom-control-input" ng-model="isFelon" data-ng-value="true" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio3" type="radio" class="custom-control-input" data-ng-value="false" ng-model="isFelon" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio3.$invalid">
+                            <div ng-show="form.radio3.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                            <div class="col-md-6">
+                                <legend class="col-form-legend">Are you able to obtain a security clearance in the US?</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio4" type="radio" class="custom-control-input" value="true" ng-model="application.appsecurityclearance" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio4" type="radio" class="custom-control-input" value="false" ng-model="application.appsecurityclearance" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio4.$invalid">
+                            <div ng-show="form.radio4.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-show="isFelon">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" ng-model="application.appfelonreason" maxlength="2048">
+                                <small class="form-text text-muted">Please explain what you were convicted for.</small>
+                            </div>
+                        </div>
+                        <div class="row mx-auto justify-content-around uploads col-md-6 offset-md-3">
+                            <div class="form-group upload">
+                                <label for="resume">Upload Resume (.pdf)</label>
+                                <input type="file" ngf-select ng-model="application.resume" name="resume" accept="application/pdf" ngf-max-size="8MB" required ngf-model-invalid="errorResume">
+                                <small ng-show="form.$submitted || form.resume.$invalid">
+                            <div ng-show="form.resume.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                                <br>
+                                <span class="error" ng-show="form.resume.$error.maxSize">
+                                    Resume too large - {{errorResume.size / 1000000|number:1}}MB: max 8MB
+                                </span>
+                            </div>
+                            <div class="form-group upload">
+                                <label for="coverletter">Upload Cover Letter (.pdf)</label>
+                                <input type="file" ngf-select ng-model="application.coverLetter" name="coverLetter" accept="application/pdf" ngf-max-size="8MB" ngf-model-invalid="errorCoverLetter">
+                                <br>
+                                <span class="error" ng-show="form.coverLetter.$error.maxSize">
+                                    Cover letter too large - {{errorCoverLetter.size / 1000000|number:1}}MB: max 8MB
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>Education</h4>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="school in education track by $index">
+                        <hr></hr>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" ng-model="application.education[$index].edname" name="schoolname{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.schoolname{{$index}}.$untouched || form.schoolname{{$index}}.$valid" class="form-text text-muted">{{school.labelSchool}}</small>
+                                <small ng-show="form.$submitted || form.schoolname{{$index}}.$touched">
+                                <div ng-show="form.schoolname{{$index}}.$error.required" class="form-text error">Tell us your school name.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" ng-model="application.education[$index].eddatestart" name="schoolstart{{$index}}" required="">
+                                <small ng-show="form.schoolstart{{$index}}.$untouched || form.schoolstart{{$index}}.$valid" class="form-text text-muted">{{school.labelStart}}</small>
+                                <small ng-show="form.$submitted || form.schoolstart{{$index}}.$touched">
+                                <div ng-show="form.schoolstart{{$index}}.$error.required" class="form-text error">Just ballpark it.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" ng-model="application.education[$index].eddateend" name="schoolend{{$index}}" required="">
+                                <small ng-show="form.schoolend{{$index}}.$untouched || form.schoolend{{$index}}.$valid" class="form-text text-muted">{{school.labelEnd}}</small>
+                                <small ng-show="form.$submitted || form.schoolend{{$index}}.$touched">
+                                <div ng-show="form.schoolend{{$index}}.$error.required" class="form-text error">Just ballpark it.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <legend class="col-form-legend">{{school.labelGrad}}</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio5" type="radio" class="custom-control-input" value="true" ng-model="application.education[$index].edgrad" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio5" type="radio" class="custom-control-input" value="false" ng-model="application.education[$index].edgrad" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio5.$invalid">
+                            <div ng-show="form.radio5.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" ng-model="application.education[$index].eddegree" maxlength="128">
+                                <small class="form-text text-muted">{{school.labelDeg}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="education.length > 1">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addEd()"><i class="fa fa-plus"></i>
+                                <br>Add Education</button>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="education.length < 2">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addEd()"><i class="fa fa-plus"></i>
+                                <br>Add Education</button>
+                        </div>
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-danger float-left mx-auto" ng-click="remEd()"><i class="fa fa-minus"></i>
+                                <br>Remove Education</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>References</h4>
+                            <i>(Please add 3)</i>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="ref in references track by $index">
+                        <hr></hr>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.reference[$index].refname" name="refname{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.refname{{$index}}.$untouched || form.refname{{$index}}.$valid" class="form-text text-muted">{{ref.labelName}}</small>
+                                <small ng-show="form.$submitted || form.refname{{$index}}.$touched">
+                                <div ng-show="form.refname{{$index}}.$error.required" class="form-text error">Who is going to sing your praises?
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.reference[$index].refrelationship" name="refrel{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.refrel{{$index}}.$untouched || form.refrel{{$index}}.$valid" class="form-text text-muted">{{ref.labelRelationship}}</small>
+                                <small ng-show="form.$submitted || form.refrel{{$index}}.$touched">
+                                <div ng-show="form.refrel{{$index}}.$error.required" class="form-text error">How do you know them?
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.reference[$index].refcompany" name="refco{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.refco{{$index}}.$untouched || form.refco{{$index}}.$valid" class="form-text text-muted">{{ref.labelCompany}}</small>
+                                <small ng-show="form.$submitted || form.refco{{$index}}.$touched">
+                                <div ng-show="form.refco{{$index}}.$error.required" class="form-text error">Where do they work?
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" ng-model="application.reference[$index].refphone" name="refphone{{$index}}" maxlength="20" required="">
+                                <small ng-show="form.refphone{{$index}}.$untouched || form.refphone{{$index}}.$valid" class="form-text text-muted">{{ref.labelPhone}}</small>
+                                <small ng-show="form.$submitted || form.refphone{{$index}}.$touched">
+                                <div ng-show="form.refphone{{$index}}.$error.required" class="form-text error">We'll need their digits as well.
+                                </div></small>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" ng-model="application.reference[$index].refemail" name="refemail{{$index}}" required="" maxlength="64">
+                                <small ng-show="form.refemail{{$index}}.$untouched || form.refemail{{$index}}.$valid" class="form-text text-muted">{{ref.labelEmail}}</small>
+                                <small ng-show="form.$submitted || form.refemail{{$index}}.$touched">
+                                <div ng-show="form.refemail{{$index}}.$error.required || form.refemail{{$index}}.$invalid-email" class="form-text error">We'll need their email.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="references.length > 1">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addRef()"><i class="fa fa-plus"></i>
+                                <br>Add References</button>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="references.length < 2">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addRef()"><i class="fa fa-plus"></i>
+                                <br>Add References</button>
+                        </div>
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-danger float-left mx-auto" ng-click="remRef()"><i class="fa fa-minus"></i>
+                                <br>Remove References</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>Previous Employment</h4>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="emp in prevEmp track by $index">
+                        <hr></hr>
+                        <div class="row form-group">
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].pecompany" name="empname{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.empname{{$index}}.$untouched || form.empname{{$index}}.$valid" class="form-text text-muted">{{emp.labelCompany}}</small>
+                                <small ng-show="form.$submitted || form.empname{{$index}}.$touched">
+                                <div ng-show="form.empname{{$index}}.$error.required" class="form-text error">Who did you work for?!
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].pephone" name="empphone{{$index}}" maxlength="20" required="">
+                                <small ng-show="form.empphone{{$index}}.$untouched || form.empphone{{$index}}.$valid" class="form-text text-muted">{{emp.labelPhone}}</small>
+                                <small ng-show="form.$submitted || form.empphone{{$index}}.$touched">
+                                <div ng-show="form.empphone{{$index}}.$error.required" class="form-text error">Please enter a phone number.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].addressline1" name="empadd{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.empadd{{$index}}.$untouched || form.empadd{{$index}}.$valid" class="form-text text-muted">{{emp.labelAddress}}</small>
+                                <small ng-show="form.$submitted || form.empadd{{$index}}.$touched">
+                                <div ng-show="form.empadd{{$index}}.$error.required" class="form-text error">Please enter an address.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].addressline2" maxlength="128">
+                                <small class="form-text text-muted">{{emp.labelUnit}}</small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].addresscity" name="empcity{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.empcity{{$index}}.$untouched || form.empcity{{$index}}.$valid" class="form-text text-muted">{{emp.labelCity}}</small>
+                                <small ng-show="form.$submitted || form.empcity{{$index}}.$touched">
+                                <div ng-show="form.empcity{{$index}}.$error.required" class="form-text error">Please enter a city.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].addressstate" name="empstate{{$index}}" ng-maxlength="2" ng-minlength="2" required="" maxlength="2">
+                                <small ng-show="form.empstate{{$index}}.$untouched || form.empstate{{$index}}.$valid" class="form-text text-muted">{{emp.labelState}}</small>
+                                <small ng-show="form.$submitted || form.empstate{{$index}}.$touched">
+                            <div ng-show="form.empstate{{$index}}.$error.required || form.empstate{{$index}}.$invalid" class="form-text error">Tell us your state abbreviation.
+                            </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].addresszip " name="empzip{{$index}}" ng-maxlength="5" ng-minlength="5" required="" maxlength="5">
+                                <small ng-show="form.empzip{{$index}}.$untouched || form.empzip{{$index}}.$valid" class="form-text text-muted">{{emp.labelZip}}</small>
+                                <small ng-show="form.$submitted || form.empzip{{$index}}.$touched">
+                                <div ng-show="form.empzip{{$index}}.$error.required || form.empzip{{$index}}.$invalid-minlength" class="form-text error">Please enter a valid zip code.
+                                </div>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].pejobtitle" name="emptitle{{$index}}" required="" maxlength="64">
+                                <small ng-show="form.emptitle{{$index}}.$untouched || form.emptitle{{$index}}.$valid" class="form-text text-muted">{{emp.labelJob}}</small>
+                                <small ng-show="form.$submitted || form.emptitle{{$index}}.$touched">
+                                <div ng-show="form.emptitle{{$index}}.$error.required" class="form-text error">Tell us your former title.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].pesupervisor" name="empsup{{$index}}" required="" maxlength="128">
+                                <small ng-show="form.empsup{{$index}}.$untouched || form.empsup{{$index}}.$valid" class="form-text text-muted">{{emp.labelSupervisor}}</small>
+                                <small ng-show="form.$submitted || form.empsup{{$index}}.$touched">
+                                <div ng-show="form.empsup{{$index}}.$error.required" class="form-text error">Tell us your former supervisor's name.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 offset-md-3">
+                                <input type="number" class="form-control" ng-model="application.employer[$index].pesalarystart" name="empstart{{$index}}" required="" maxlength="10">
+                                <small ng-show="form.empstart{{$index}}.$untouched || form.empstart{{$index}}.$valid" class="form-text text-muted">{{emp.labelStart}}</small>
+                                <small ng-show="form.$submitted || form.empstart{{$index}}.$touched">
+                                <div ng-show="form.empstart{{$index}}.$error.required" class="form-text error">Tell us your starting wage.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" class="form-control" ng-model="application.employer[$index].pesalaryend" name="empend{{$index}}" required="" maxlength="10">
+                                <small ng-show="form.empend{{$index}}.$untouched || form.empend{{$index}}.$valid" class="form-text text-muted">{{emp.labelEnd}}</small>
+                                <small ng-show="form.$submitted || form.empend{{$index}}.$touched">
+                                <div ng-show="form.empend{{$index}}.$error.required" class="form-text error">Tell us your ending wage.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].peresponsibilities" name="empresp{{$index}}" required="" maxlength="2048">
+                                <small ng-show="form.empresp{{$index}}.$untouched || form.empresp{{$index}}.$valid" class="form-text text-muted">{{emp.labelResp}}</small>
+                                <small ng-show="form.$submitted || form.empresp{{$index}}.$touched">
+                                <div ng-show="form.empresp{{$index}}.$error.required" class="form-text error">Tell us your responsibilities.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" ng-model="application.employer[$index].pedatestart" name="empbegin{{$index}}" required="">
+                                <small ng-show="form.empbegin{{$index}}.$untouched || form.empbegin{{$index}}.$valid" class="form-text text-muted">{{emp.labelFrom}}</small>
+                                <small ng-show="form.$submitted || form.empbegin{{$index}}.$touched">
+                                <div ng-show="form.empbegin{{$index}}.$error.required" class="form-text error">Tell us when you started.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" ng-model="application.employer[$index].pedateend" name="empfinish{{$index}}" required="">
+                                <small ng-show="form.empfinish{{$index}}.$untouched || form.empfinish{{$index}}.$valid" class="form-text text-muted">{{emp.labelTo}}</small>
+                                <small ng-show="form.$submitted || form.empfinish{{$index}}.$touched">
+                                <div ng-show="form.empfinish{{$index}}.$error.required" class="form-text error">Tell us when you left this job.
+                                </div>
+                            </small>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="application.employer[$index].pereasonforleaving" name="why{{$index}}" required="" maxlength="2048">
+                                <small ng-show="form.why{{$index}}.$untouched || form.why{{$index}}.$valid" class="form-text text-muted">{{emp.labelReason}}</small>
+                                <small ng-show="form.$submitted || form.why{{$index}}.$touched">
+                                <div ng-show="form.why{{$index}}.$error.required" class="form-text error">Tell us why you left this job.
+                                </div>
+                            </small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-8 offset-md-2">
+                                <legend class="col-form-legend">{{emp.labelContact}}</legend>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio6{{$index}}" type="radio" class="custom-control-input" value='true' ng-model="application.employer[$index].pemaycontact" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio">
+                                    <input name="radio6{{$index}}" type="radio" class="custom-control-input" value="false" ng-model="application.employer[$index].pemaycontact" required="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">No</span>
+                                </label>
+                                <small ng-show="form.$submitted || form.radio6{{$index}}.$invalid">
+                            <div ng-show="form.radio6{{$index}}.$error.required" class="form-text error">Required.
+                            </div>
+                            </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="prevEmp.length > 1">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addEmp()"><i class="fa fa-plus"></i>
+                                <br>Add Previous Employment</button>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center addbuttons" ng-hide="prevEmp.length < 2">
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-success float-left mx-auto" ng-click="addEmp()"><i class="fa fa-plus"></i>
+                                <br>Add Previous Employment</button>
+                        </div>
+                        <div class="mx-auto">
+                            <button type="button" class="btn btn-outline-danger float-left mx-auto" ng-click="remEmp()"><i class="fa fa-minus"></i>
+                                <br>Remove Previous Employment</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="alert" ng-show="submission.submitted" ng-class="{'alert-warning': submission.loading, 'alert-success': submission.submittedOk, 'alert-danger': !submission.submittedOk && !submission.loading}">
+                        <span ng-show="submission.loading"><i class="fa fa-fw fa-spin fa-circle-o-notch"></i> Sending application...</span>
+                        <span ng-show="!submission.loading">{{ submission.message }}</span>
+                    </div>
+                    <button class="btn btn-secondary" ng-disabled="form.$invalid" ng-click="submit();">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+DROP TABLE IF EXISTS link;
+DROP TABLE IF EXISTS previousEmployment;
+DROP TABLE IF EXISTS reference;
+DROP TABLE IF EXISTS application;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS job;
+DROP TABLE IF EXISTS address;
+
+CREATE TABLE address(
+	addressId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	addressCity VARCHAR(128) NOT NULL,
+	addressCountry VARCHAR(128) NOT NULL,
+	addressLine1 VARCHAR(128) NOT NULL,
+	addressLine2 VARCHAR(128),
+	addressState CHAR(2) NOT NULL,
+	addressZip VARCHAR(10) NOT NULL,
+
+	PRIMARY KEY (addressId)
+);
+
+CREATE TABLE job(
+	jobId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	jobTitle VARCHAR(128) NOT NULL,
+	jobIsOpen BOOLEAN NOT NULL,
+
+	PRIMARY KEY (jobId)
+);
+
+CREATE TABLE user(
+	userId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	userAddressId INT UNSIGNED NOT NULL,
+	userEmail VARCHAR(64) NOT NULL,
+	userJobId INT UNSIGNED NOT NULL,
+	userNameFirst VARCHAR(64) NOT NULL,
+	userNameMiddle VARCHAR(64),
+	userNameLast VARCHAR(64) NOT NULL,
+	userPhone VARCHAR(11) NOT NULL,
+
+	userHash CHAR(64) NOT NULL,
+	userSalt CHAR(64) NOT NULL,
+
+	FOREIGN KEY (userAddressId) REFERENCES address(addressId),
+	FOREIGN KEY (userJobId) REFERENCES job(jobId),
+
+	PRIMARY KEY (userId)
+);
+
+CREATE TABLE application(
+	appId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	appNameFirst VARCHAR(64) NOT NULL,
+	appNameMiddle VARCHAR(64),
+	appNameLast VARCHAR(64) NOT NULL,
+	appDate DATETIME NOT NULL,
+	appAddressId INT UNSIGNED NOT NULL,
+	appPhone VARCHAR(11) NOT NULL,
+	appEmail VARCHAR(64) NOT NULL,
+	appDateAvailable DATETIME NOT NULL,
+	appDesiredSalary INT UNSIGNED NOT NULL,
+	appJobTitleId INT UNSIGNED NOT NULL,
+	appHearAbout VARCHAR(2048) NOT NULL,
+	appAuthorizedInUS BOOLEAN NOT NULL,
+	appSecurityClearance BOOLEAN NOT NULL,
+	appVeteran BOOLEAN NOT NULL,
+	appFelonReason VARCHAR(2048) NOT NULL,
+
+	FOREIGN KEY (appAddressId) REFERENCES address(addressId),
+	FOREIGN KEY (appJobTitleId) REFERENCES job(jobId),
+
+	PRIMARY KEY (appId)
+);
+
+CREATE TABLE reference(
+	refId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	refAppId INT UNSIGNED NOT NULL,
+
+	refEmail VARCHAR(64) NOT NULL,
+	refCompany VARCHAR(128) NOT NULL,
+	refName VARCHAR(128) NOT NULL,
+	refPhone VARCHAR(11) NOT NULL,
+	refRelationship VARCHAR(128) NOT NULL,
+
+	FOREIGN KEY (refAppId) REFERENCES application(appId),
+
+	PRIMARY KEY (refId)
+);
+
+CREATE TABLE previousEmployment(
+	peId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	peAppId INT UNSIGNED NOT NULL,
+
+	peAddressId INT UNSIGNED,
+	peCompany VARCHAR(128) NOT NULL,
+	peDateStart DATETIME NOT NULL,
+	peDateEnd DATETIME NOT NULL,
+	peMayContact BOOLEAN NOT NULL,
+	pePhone VARCHAR(11) NOT NULL,
+	peResponsibilities VARCHAR(2048) NOT NULL,
+	peReasonForLeaving VARCHAR(2048) NOT NULL,
+	peSalaryStart INT UNSIGNED NOT NULL,
+	peSalaryEnd INT UNSIGNED NOT NULL,
+	peSupervisor VARCHAR(128) NOT NULL,
+	peJobTitle VARCHAR(64) NOT NULL,
+
+	FOREIGN KEY (peAddressId) REFERENCES address(addressId),
+	FOREIGN KEY (peAppId) REFERENCES application(appId),
+
+	PRIMARY KEY (peId)
+);
+
+CREATE TABLE link(
+	linkId INT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+	linkAppId INT UNSIGNED NOT NULL,
+
+	linkURL VARCHAR(256),
+
+	FOREIGN KEY (linkAppId) REFERENCES application(appId),
+
+	PRIMARY KEY (linkId)
+);

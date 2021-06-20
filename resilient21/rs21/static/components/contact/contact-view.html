@@ -1,0 +1,56 @@
+<main class="contact-page">
+    <top-button></top-button>
+    <navbar></navbar>
+    <div class="container">
+        <div class="row page-start">
+            <div class="col-md-8 offset-md-2">
+                <h1>Drop us a line</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <hr />
+            </div>
+        </div>
+        <div class="row contactus page-content">
+            <div class="col-md-8 offset-md-2">
+                <form name="form">
+                    <div class="form-group row">
+                        <label for="name" class="col-1 col-form-label">Name:</label>
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" name="contactname" ng-model="contact.name" required="" maxlength="64">
+                            <small ng-show="form.$submitted || form.contactname.$touched">
+                            <div ng-show="form.contactname.$error.required" class="form-text error">Tell us your name.</div>
+                        </small>
+                        </div>
+                        <label for="email" class="col-1 col-form-label">Email:</label>
+                        <div class="col-md-5">
+                            <input class="form-control" type="email" name="contactemail" ng-model="contact.email" required="" maxlength="64">
+                            <small ng-show="form.$submitted || form.contactemail.$touched">
+                            <div ng-show="form.contactemail.$error.required || form.contactemail.$invalid-email" class="form-text error">Please use a valid email: username@domain.com</div>
+                        </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="15" ng-model="contact.text" required="" name="contacttext" maxlength="2048"></textarea>
+                        <small ng-show="form.$submitted || form.contacttext.$touched">
+                            <div ng-show="form.contacttext.$error.required" class="form-text error">Please enter your message.</div>
+                        </small>
+                    </div>
+                    <div class="alert" ng-show="submission.submitted" ng-class="{'alert-warning': submission.loading, 'alert-success': submission.submittedOk, 'alert-danger': !submission.submittedOk && !submission.loading}">
+                        <span ng-show="submission.loading"><i class="fa fa-fw fa-spin fa-circle-o-notch"></i> Sending message...</span>
+                        <span ng-show="!submission.loading">{{ submission.message }}</span>
+                    </div>
+                    <button type="button" class="btn btn-secondary" ng-disabled="form.$invalid" ng-click="submit();">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-6 offset-md-3">
+        		<p>
+        			If you work in federal, state, or local government and are interested in working with RS21, please contact Missi Rogers at missi@rs21.io to learn more about our GSA IT Schedule 70 and other contract vehicles.
+        		</p>
+        	</div>
+        </div>
+    </div>
+</main>

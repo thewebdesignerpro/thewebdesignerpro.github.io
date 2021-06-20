@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="www.thewebdesignerpro.com" name="publisher">
+	<meta content="Armstrong Chiu" name="author">
+	<meta name="robots" content="noindex, nofollow">
+	<title>El Paso | Resilient 21</title>
+	<link media="all" type="text/css" href="css/styler.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div id="container"></div>
+
+	<a href="#" id="gear" title="Open controls"><img src="img/gear.png" alt=""></a>
+	<div id="kontrols">
+		<br>
+		<ul>
+			<li>Category</li>
+			<li class="c">
+				<select id="kategory">
+					<option value="1" selected>Age, Male</option>
+					<option value="2">Age, Female</option>
+					<option value="3">Income</option>
+					<option value="4">Rental</option>
+					<option value="5">Insurance, Young</option>
+					<option value="6">Insurance, Young Adult</option>
+					<option value="7">Insurance, Adult</option>
+					<option value="8">Insurance, Elder</option>
+					<option value="9">Commuting Method</option>
+					<option value="10">Commute Time</option>
+					<option value="11">Food Stamps &amp; Disability</option>
+					<option value="12">Language, Young</option>
+					<option value="13">Language, Adult</option>
+					<option value="14">Language, Elder</option>
+					<option value="15">Education</option>
+					<option value="16">Family Structure</option>
+					<option value="17">Race</option>
+				</select>
+			</li>		
+			<li>Camera Mode</li>
+			<li class="c">
+				<select id="kamera">
+					<option value="Perspective" selected>Perspective</option>
+					<option value="Orthographic">Orthographic</option>
+				</select>
+			</li>
+			<li>Camera View</li>
+			<li class="c">
+				<select id="view">
+					<option value="1" selected>Front</option>
+					<option value="2">Back</option>
+					<option value="3">Top</option>
+					<option value="4">Bottom</option>
+					<option value="5">Left</option>
+					<option value="6">Right</option>
+				</select>
+			</li>			
+
+		</ul>
+		<div id="alert">Mouse: hold click + move to rotate<br>Mousewheel to zoom in/out<br>Press A or D to pan<br>Press W or S to forward or backward<br>Press Q or E to roll<br>Touch: swipe screen</div>
+		<a href="#" id="klose" title="Close"><img src="img/klose.png" alt="x"></a>
+	</div>
+	
+	<script src="js/73/three.min.js"></script>
+	<script src="js/73/Detector.js"></script>
+	<!--<script src="js/73/stats.min.js"></script>
+	<script src='js/73/dat.gui.min.js'></script>-->
+	<script src='js/camera/CombinedCamera.js'></script>
+	<script src='js/renderer/Projector.js'></script>
+	<!--<script src="js/control/OrbitControls.js"></script>	-->
+	<script src="js/control/FlyControls.js"></script>	
+	<script src="js/data/RS21_demoData.json"></script>	
+	<script src="js/elpaso3.js"></script>	
+</body>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-56179445-1', 'auto');
+	ga('send', 'pageview');
+</script>	
+</html>

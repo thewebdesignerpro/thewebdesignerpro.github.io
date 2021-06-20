@@ -1,0 +1,52 @@
+/* Author: Armstrong Chiu
+   URL: https://thewebdesignerpro.com/    */
+
+#picker, #slider, #closeit {
+display:none;
+position:absolute;
+top:40%;
+right:0;
+cursor:pointer;
+}
+#picker {
+width:160px;
+//text-align:right;
+}
+#slider {
+width:30px;
+}
+/*#picker:before {
+content:'-- CHANGE COLOR --';
+position:absolute;
+//top:-14px;
+bottom	:-14px;
+//right:35px;
+font-size:12px;
+color:#999;
+}*/
+
+#closeit {
+display:block;
+top:38%;
+padding:10px 0;
+width:160px;
+font-family:'futura_icg_lightregular';
+font-size:11px;
+text-align:center;
+color:#fff;
+background:#336699;
+}
+#closeit:hover {
+background:#003366;
+-webkit-transition:all 0.3s ease-out; 
+transition:all 0.3s ease-out; 
+outline:0;
+}	
+@media screen and (max-width: 640px) {
+#picker, #slider {
+top:20%;
+}
+#closeit {
+top:18%;
+}
+}

@@ -1,0 +1,27 @@
+<nav class="navbar fixed-top nav-down navbar-toggleable-sm nav-color" ng-class="{'home': isHome, 'scrolled': scrolledDown && !isHome, 'showApplication': showApplication}" id="shared-navbar">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+		<a class="navbar-brand" href="#page-top">
+			<img class="logo_brand" src="/static/assets/img/RS21_logo.png" alt="">
+		</a>
+	<div class="collapse navbar-collapse navbar-links nav-links-action" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item story-btn">
+				<a class="nav-link page-scroll" href="#!/story/">our story</a>
+			</li>
+			<li class="nav-item help-btn">
+				<a class="nav-link page-scroll" href="#!/help/">who we help</a>
+			</li>
+			<li class="nav-item careers-btn">
+				<a class="nav-link page-scroll" href="#!/careers/">careers</a>
+			</li>
+			<li class="nav-item contact-btn">
+				<a class="nav-link page-scroll" href="#!/contact">contact us</a>
+			</li>
+			<li class="nav-item signout-btn" ng-show="$root.loggedIn">
+				<a class="nav-link page-scroll" ng-click="signout();">sign out</a>
+			</li>
+		</ul>
+	</div>
+</nav>

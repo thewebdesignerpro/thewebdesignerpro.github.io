@@ -1,0 +1,97 @@
+.careers-page {
+    background: linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.5) 100%), url("../img/dot.png") repeat;
+    .careers-icon {
+        font-size: 30px;
+        margin: 15px;
+    }
+    .container{
+    	background: white;
+    	height: 100%;
+    }
+    .careers-icon-header {
+        font-size: 15px;
+        margin: 10px;
+    }
+    .career-btn {
+        padding-top: 2rem;
+        color: rgb(16, 17, 19);
+        cursor: pointer;
+        &:hover {
+            color: $blue;
+        }
+    }
+    .careers-content {
+        strong {
+            font-family: $black-font;
+        }
+        .sub-p {
+            padding-left: 15px;
+        }
+    }
+    .fa-chevron-right {
+        color: rgb(33, 33, 33);
+        font-size: xx-small;
+    }
+    .share-links {
+        font-size: xx-large;
+    }
+    #applicationJobDescription {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -50vw;
+        padding: 3rem;
+        width: 50vw;
+        background: #fff;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: all 1s;
+        &.show {
+            left: 0;
+            @media screen and (max-width: 768px) {
+                left: -50vw !important;
+            }
+        }
+    }
+    .qual-box {
+        text-align: left;
+    }
+    .fa-desktop,
+    .fa-tasks,
+    .fa-space-shuttle,
+    .fa-flask,
+    .fa-cubes,
+    .fa-database {
+        color: rgba(33, 33, 33, .8);
+        &:hover {
+            color: $blue;
+        }
+    }
+    .page-content {
+        margin: 75px 0;
+        @media screen and (max-width: 768px) {
+            margin: 25px 0;
+        }
+    }
+    .appbutton {
+        margin: 4rem 0;
+    }
+    .mobilefixtop {
+        @media screen and (max-width: 768px) {
+            margin: 0;
+        }
+    }
+    .mobilefixbottom {
+        @media screen and (max-width: 768px) {
+            margin: 0;
+        }
+    }
+    .btn-secondary{
+    	border-color:$off-black;
+    	&:hover{
+    		font-family: "Roboto";
+    		font-weight: $bold-font;
+    		background-color: white;
+    	}
+    }
+}

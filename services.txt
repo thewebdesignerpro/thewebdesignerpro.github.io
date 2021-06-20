@@ -1,0 +1,6 @@
+<h2>Services</h2>
+<p>Web Design &amp; Web Development<br>Responsive [Desktop &amp; Mobile]<br></p>
+<p>Graphics Design</p>
+<p>3D Rendering and Animation</p>
+<p>Facebook Apps [Woobox]</p>
+<p>HTML, CSS, HTML5, CSS3, JavaScript, jQuery, PHP, MySQL, WordPress customization,<br>GLSL, WebGL [ThreeJs], GSAP animation, Reveal.js, React.js, SASS/SCSS, Twitter Bootstrap, Woobox,<br>WooCommerce, SEO.</p>

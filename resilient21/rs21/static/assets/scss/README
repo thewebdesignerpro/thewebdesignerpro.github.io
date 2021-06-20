@@ -1,0 +1,18 @@
+assets/scss/
+----- partials/
+-------- _home.scss
+-------- _contact.scss
+-------- _careers.scss
+-------- _help.scss
+----- variables/
+-------- _variables.scss
+----- vendor/ 
+-------- _jquery.scss
+-------- _colorpicker.scss
+--style.scss
+
+We will import all of our scss from the components as partials into "style.scss" to compile into nicely into "style.css"
+
+We will also have "variables.scss" and third party scss in the vendor file folder.
+
+I would like to pull all of these into the assets folder location for cleanliness and to keep our scss + css all in on place for easy navigation in the case of naming conflicts.

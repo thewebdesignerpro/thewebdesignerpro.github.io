@@ -1,0 +1,27 @@
+#topButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: fixed;
+	bottom: -10rem;
+	right: 1rem;
+
+	width: 2rem;
+	height: 2rem;
+
+	background: rgb(33,33,33);
+
+	cursor: pointer;
+
+	transition: all 0.3s;
+
+	z-index: 100;
+
+	&.active {
+		bottom: 1rem;
+	}
+	.fa-lg{
+		color:white;
+	}
+}

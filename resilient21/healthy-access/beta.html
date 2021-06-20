@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="www.thewebdesignerpro.com" name="publisher">
+	<meta content="Armstrong Chiu" name="author">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Healthy Design | Resilient 21</title>
+	<link media="all" type="text/css" href="css/sidekick.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/simple-scrollbar.css" rel="stylesheet">
+	<link media="all" type="text/css" href="css/styler.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<input type="checkbox" id="sidekickToggle">
+    <label class="sidekick-toggle" for="sidekickToggle">
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+			<g>
+				<rect x="96" y="241" width="320" height="32"/>
+				<rect x="96" y="145" width="320" height="32"/>
+				<rect x="96" y="337" width="320" height="32"/>
+			</g>
+		</svg>
+		<span class="sr-only">Menu Toggle</span>
+    </label>
+	
+	<div id="maincontainer" class="sidekick">
+		<nav id="kontrols" class="sidekick-panel">
+			<h1>Healthy Access</h1>
+			<span>Chamizal, El Paso, Texas</span>
+			<h2>Access Types</h2>
+			<ul>
+				<li><a id="access1" href="#">Walking</a></li>
+				<li><a id="access2" href="#">Biking</a></li>
+				<li><a id="access3" class="selected" href="#">Driving</a></li>
+			</ul>
+
+			<div id="alert">
+				<div class="checkboxes">
+					<input id="roads" name="roads" value="Roads" type="checkbox">Roads
+					<input id="terrainM" name="terrainM" value="Wireframe" type="checkbox">Wireframe	
+					<br><br>
+				</div>			
+				Mouse: hold click + move to rotate<br>Mousewheel to zoom in/out<br>Press Left or Right to pan<br>Press Up or Down for elevator<br>Touch: swipe screen
+			</div>
+		</nav>
+	
+		<div class="sidekick-body"><header>Chamizal, El Paso</header><div id="container"></div></div>
+	</div>
+	
+	<footer>Powered by <a href="http://www.resilientsolutions21.com/" target="_blank">Resilient Solutions 21</a></footer>
+	
+	<script src="js/simple-scrollbar.min.js"></script>
+	<script src="js/73/three.min.js"></script>
+	<script src="js/73/Detector.js"></script>
+	<script src="js/73/Lut.js"></script>
+	<!--<script src="js/73/stats.min.js"></script>
+	<script src='js/73/dat.gui.min.js'></script>-->
+	<script src="js/control/OrbitControls.js"></script>	
+	<!--<script src="js/control/FlyControls.js"></script>	
+	<script src="js/data/HealthyAssets.json"></script>	-->
+	<script src="js/data/roads.json"></script>
+	<script src="js/access.js"></script>	
+</body>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-56179445-1', 'auto');
+	ga('send', 'pageview');
+</script>	
+</html>

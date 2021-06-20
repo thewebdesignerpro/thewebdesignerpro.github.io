@@ -1,0 +1,27 @@
+.contact-page {
+	background: linear-gradient(rgba(#fff, 0.5) 0%, rgba(#fff, 0.5) 100%), url("../img/dot.png") repeat;
+    .btn-secondary {
+        border: none;
+        // font-family: $bold-font;
+        font-family: "Roboto";
+        font-weight: $bold-font;
+        &:hover {
+            background-color: white;
+            font-size: 1.2rem;
+        }
+    }
+    .container .page-content {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+	.container{
+		background: white;
+	}
+    h1 {
+    	margin-bottom: 1rem;
+    }
+
+    .error {
+    	color: $red;
+    }
+}
