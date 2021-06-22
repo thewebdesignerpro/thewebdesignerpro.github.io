@@ -1,0 +1,8 @@
+<h2>Contact</h2>
+<form action="kontakin.php" method="post" autocomplete="on">
+<p><input type="text" name="name" id="name" value="" placeholder="Name" required autofocus /></p>
+<p><input type="email" name="email" id="email" value="" placeholder="Email" required /></p>
+<p><textarea name="message" id="message" value="" placeholder="Message" required ></textarea></p>
+<p><input type="number" name="kwiz" id="kwiz" value="" min="9" max="9" placeholder="7 + 5 - 3 = " required /></p>
+<p><input id="csubmit" type="submit" value="SUBMIT" /></p>
+</form>		  
