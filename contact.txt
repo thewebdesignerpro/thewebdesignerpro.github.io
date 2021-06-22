@@ -1,6 +1,6 @@
 <h2>Contact</h2>
 Hi! Please email me at:
-<br/><br/>
-<img style="width:90%;" src="imj/army.png" alt="" border=0>
-<br/><br/>
+<br/><br/><br/>
+<img style="width:84%;" src="imj/army.png" alt="" border=0>
+<br/><br/><br/>
 Thanks!
