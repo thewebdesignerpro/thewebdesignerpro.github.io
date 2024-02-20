@@ -3,12 +3,12 @@
 
 @font-face {
     font-family:'futura_icg_lightregular';
-    src: url('futura_icg_light-webfont.eot');
-    src: url('futura_icg_light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('futura_icg_light-webfont.woff2') format('woff2'),
-         url('futura_icg_light-webfont.woff') format('woff'),
-         url('futura_icg_light-webfont.ttf') format('truetype'),
-         url('futura_icg_light-webfont.svg#futura_icg_lightregular') format('svg');
+    src: url('../futura_icg_light-webfont.eot');
+    src: url('../futura_icg_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../futura_icg_light-webfont.woff2') format('woff2'),
+         url('../futura_icg_light-webfont.woff') format('woff'),
+         url('../futura_icg_light-webfont.ttf') format('truetype'),
+         url('../futura_icg_light-webfont.svg#futura_icg_lightregular') format('svg');
     font-weight:normal;
     font-style:normal;
 }
