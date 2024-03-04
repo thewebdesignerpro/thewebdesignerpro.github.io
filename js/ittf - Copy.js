@@ -229,7 +229,7 @@ function init() {
 	
 	ui.kontainer.addEventListener("wheel", wheelE, false);	*/
 	
-//	entro(); 
+	entro(); 
 	
 	//fadeScene(); 	
 }
@@ -258,8 +258,6 @@ function entro() {
     
 	//kontainer.addEventListener( 'click', kontainerClck, false ); 
 	ui.kontainer.appendChild(ui.tempDiv); 				
-	
-	if (!isMobil) document.addEventListener( 'keyup', clickTap, false ); 	
 }
 	
 function addGround() {
@@ -603,7 +601,7 @@ function fadeScene() {
 			
 			onWindowResize(); 			
 			
-			entro(); 
+			//entro(); 
 			
 			if (isMobil) {
 				//ui.kontainer.addEventListener( 'touchstart', onMouseMove2, false );
@@ -661,14 +659,10 @@ function clickTap() {
 		ui.tempDiv.parentNode.removeChild(noAud);	
 		ui.tempDiv = undefined; 
 		
-		addAud(); 
-	
-		if (!isMobil) document.removeEventListener( 'keyup', clickTap, false ); 		
-		
 		//win.navbars.visible = true; 
 	}
 	//container.removeEventListener( 'click', containerClick, false ); 
-	//addAud(); 
+	addAud(); 
 }
 	
 function onMouseMove( event ) {
@@ -1112,37 +1106,31 @@ function anim8() {
 }
 
 function addAud() {
-	//console.log(x.sound); 
+	//let url = 'bragernesasen-18874'; 	
+	//let url = 'bird-voices-7716'; 	
+	//let url = 'believe-in-miracle-by-prabajithk-121041'; 	
+	//let url = 'calm-and-peaceful-115481'; 	
+	//let url = 'cancion-triste-1502'; 	
+	let url = 'frst1'; 	
+	url += '.mp3'; 	
+
+	// create an AudioListener and add it to the camera
+	const listener = new THREE.AudioListener();
+	camera.add( listener );
 	
-	if (!x.sound) {
-		//let url = 'bragernesasen-18874'; 	
-		//let url = 'bird-voices-7716'; 	
-		//let url = 'believe-in-miracle-by-prabajithk-121041'; 	
-		//let url = 'calm-and-peaceful-115481'; 	
-		//let url = 'cancion-triste-1502'; 	
-		let url = 'frst1'; 	
-		url += '.mp3'; 	
-		
-		// create an AudioListener and add it to the camera
-		const listener = new THREE.AudioListener();
-		camera.add( listener );
-		
-		// create a global audio source
-		//const sound = new THREE.Audio( listener );
-		x.sound = new THREE.Audio( listener );
-		
-		// load a sound and set it as the Audio object's buffer
-		const audioLoader = new THREE.AudioLoader();
-		
-		audioLoader.load( 'aud/' + url, function( buffer ) {
-		
-			x.sound.setBuffer( buffer );
-			x.sound.setLoop( true );
-			x.sound.setVolume( 0.4 );
-			x.sound.play(); 
-		});
+	// create a global audio source
+	const sound = new THREE.Audio( listener );
 	
-	}
+	// load a sound and set it as the Audio object's buffer
+	const audioLoader = new THREE.AudioLoader();
+	
+	audioLoader.load( 'aud/' + url, function( buffer ) {
+
+		sound.setBuffer( buffer );
+		sound.setLoop( true );
+		sound.setVolume( 0.4 );
+		sound.play();
+	});
 	
 }
 
