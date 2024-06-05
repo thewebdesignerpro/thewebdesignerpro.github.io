@@ -1,0 +1,250 @@
+/**
+ * author Armstrong "Army" Chiu
+ * URL: https://thewebdesignerpro.com/
+ */
+
+@font-face {
+    font-family: 'paint_dropsregular';
+    src: url('paintdropsregular-0wajo-webfont.woff2') format('woff2'),
+         url('paintdropsregular-0wajo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+ 
+html {
+	height: 100vh;
+	overflow: hidden;
+}
+
+html, body {
+	box-sizing: border-box;
+	background: #000000;	
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+body, #kontainer {
+	margin: 0;
+}
+
+#kontainer {
+	width: 100vw;
+	/*height: 100vw;	*/
+	height: 200vh;	
+	display: block; 
+	position: relative;
+	opacity: 0;
+	box-sizing: border-box;
+	overflow: visible;
+	/*perspective: 1px;
+	transform-style: preserve-3d;*/
+}
+
+#dummy {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 9000px;
+}
+
+@media (hover:none), (hover:on-demand) {
+	#dummy {
+		left: -9000px;
+	}
+}
+
+@supports(padding: max(0px)) {
+	@media (hover:none), (hover:on-demand) {
+		@media screen and (orientation: portrait) {
+			#dummy {
+				padding-bottom: constant(safe-area-inset-bottom);
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+		}
+	}
+}
+
+#logo1 {
+	display: block; 
+	position: relative; 
+	margin: auto; 
+	width: 100vw;
+    height: 100vh;
+	z-index: 99; 
+	overflow: visible;
+	background: transparent; 
+    box-sizing: border-box;
+	opacity: 0; 
+}
+
+#logo {
+	display: block; 
+	position: absolute; 
+	margin: auto; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	width: 100vh; 
+	height: 100vh; 
+	z-index: 100; 
+	background: url('../images/logo2.png') center center / contain no-repeat; 
+}
+
+#logo > img {
+	width: 100%; 
+}
+
+.socs {
+    position: absolute;
+    width: 17vh;
+    height: 17vh;
+    text-decoration: none;
+	top: 0; 
+    bottom: -28vh;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    opacity: .5;
+	transition: all .3s ease-in-out; 
+}
+
+.socs:hover {
+	scale: .9; 
+	
+}
+
+#logo1 .socs:nth-child(1) {
+	left: -52vh;
+}
+
+#logo1 .socs:nth-child(3) {
+	left: 52vh;
+}
+
+.socs > img {
+	width: 100%; 
+}
+
+#frontobj1 {
+	display: block; 
+	position: absolute; 
+	margin: auto; 
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+	/*width: 60%; 
+	height: 60%; */
+	width: 120vh; 
+	height: 120vh; 
+	background: url('../images/frontobj1.png') center center / cover no-repeat; 	
+	z-index: 50; 
+}
+
+#frontobj1 > img {
+	width: 100%; 
+}
+
+#background1 {
+	position: absolute;
+	margin: 0; 
+	padding: 0; 
+	width: 100%; 
+	height: 100%; 
+	box-sizing: border-box;	
+	opacity: 1; 
+	/*transform-style: preserve-3d;*/
+	background: url('../images/background1a.jpg') top center / cover no-repeat; 	
+	z-index: 1; 
+}
+
+#counter1 {
+	display: block; 
+	position: relative; 
+	margin: 0; 
+	width: 100vw;
+    height: 100vh;
+	overflow: hidden; 
+}
+
+body::-webkit-scrollbar {
+	width: 12px;
+	background: rgba(90, 90, 90, 0.2);
+	border-radius: 32px;
+}
+
+body::-webkit-scrollbar-thumb {
+	width: 8px;
+	background: rgba(90, 90, 90, 0.3);
+	border-radius: 32px;
+}
+
+@media screen and (orientation: portrait) {
+	#kontainer {
+		width: 100vw;
+		height: 170vh;
+	}
+	
+	#logo {
+		width: 100vw;
+		height: 100vw;
+	}
+	
+	.socs {
+		width: 19vw;
+		height: 19vw;
+		top: 27vw;
+		bottom: 0;
+	}	
+	
+	#logo1 .socs:nth-child(1) {
+		left: -52vw;
+	}
+
+	#logo1 .socs:nth-child(3) {
+		left: 52vw;
+	}	
+	
+	#frontobj1 {
+		width: 102vh; 
+		height: 102vh; 
+	}
+
+/*	#frontobj1 {
+		width: 100%; 
+		height: 100vw; 
+	}
+	
+	@media only screen and (max-width : 768px) {
+		#frontobj1 {
+			height: 115vw; 
+		}
+	}	
+	
+	@media only screen and (max-width : 600px) {
+		#frontobj1 {
+			height: 130vw; 
+		}
+	}	*/
+}
+
+#logo1.fadeIt2 {
+	opacity: 1 !important;
+	transition: all 6s ease-in;
+}
+
+.hideIt {
+	visibility: hidden; 
+}
+
+.noneIt {
+	display: none; 
+}
+
