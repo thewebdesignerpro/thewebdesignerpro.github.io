@@ -217,7 +217,7 @@ body, #kontainer {
 	position: relative; 
 	margin: 0; 
 	width: 100vw;
-    height: 100vh;
+    height: 170vh;
 	overflow: hidden; 
 }
 
@@ -264,6 +264,10 @@ body::-webkit-scrollbar-thumb {
 		height: 102vh; 
 		transform: translateZ(-2px) scale(3) translate(0, 35%); 
 	}
+	
+	#counter1 {
+		height: 141vh;
+	}	
 }
 
 #logo1.fadeIt2 {
