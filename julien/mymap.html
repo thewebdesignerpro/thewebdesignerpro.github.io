@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Julien Muzard: Mapbox</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>Julien Muzard: Earth Heat Map</title>
+		<meta content="Dr. Julien Muzard, Digital Nebula." name="description">
+		<meta content="Armstrong -Army- Chiu" name="author">
+		<meta name="robots" content="no index, follow">
+		<link type="text/css" rel="stylesheet" href="css/main4.css">
+		<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+	    <link rel="icon" type="images/favicon.ico" href="favicon.ico">
+
+	</head>
+
+	<body>
+
+		<div id="kontainer" style="opacity:1;"></div>
+
+		<script>
+			mapboxgl.accessToken = 'pk.eyJ1IjoianVscGViYmxlIiwiYSI6ImNqdXBlOXVxZTEzd3Q0NGxkZ2NlcnRweXgifQ.lX9D6BF2OrEXbwa_xavdhw';
+			var map = new mapboxgl.Map({
+				container: 'kontainer',
+				style: 'mapbox://styles/julpebble/ck7p5e9s20e541ioglm0h40qn'
+			});
+		</script>
+
+		<header id="theLogo">
+			<div class="bg34"></div>
+			<div class="theName">JULIEN MUZARD DIGITAL NEBULA</div>
+		</header>
+
+		<footer>&copy; 2020. Zone80. By <a href="https://thewebdesignerpro.com/" target="_blank">thewebdesignerpro.com</a></footer>
+
+	</body>
+
+</html>
