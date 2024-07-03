@@ -19,7 +19,7 @@ x3=document.getElementById("x3");
 //pinfo=document.getElementById("pinfo2");   
 
 let navOn = false; 
-   
+
 function fadeOff(a){
 	a.style.opacity = 1;
 	(function fade() {
@@ -63,7 +63,7 @@ function loadCon(url, bx) {
 	if	(url != root) {
 		var xhr = new XMLHttpRequest();
 		if (bx=='s') {
-			xhr.open("GET", "services.txt", true);
+			xhr.open("GET", "//thewebdesignerpro.com/services.txt", true);
 			//xhr.responseType = "document";
 			xhr.setRequestHeader('Content-type', 'text/plain');
 			xhr.send();			
@@ -73,7 +73,7 @@ function loadCon(url, bx) {
 				}
 			}
 		} else if (bx=='p') {
-			xhr.open("GET", "portfolio.txt", true);
+			xhr.open("GET", "//thewebdesignerpro.com/portfolio.txt", true);
 			xhr.setRequestHeader('Content-type', 'text/plain');
 			xhr.send();			
 			xhr.onreadystatechange = function(e) { 
@@ -82,13 +82,13 @@ function loadCon(url, bx) {
 				}
 			}				
 		} else {
-			xhr.open("GET", "contact.txt", true);
+			xhr.open("GET", "//thewebdesignerpro.com/contact.txt", true);
 			xhr.setRequestHeader('Content-type', 'text/plain');
 			xhr.send();			
 			xhr.onreadystatechange = function(e) { 
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					cntnt3.innerHTML = xhr.responseText;
-				//	document.getElementById("name").focus();
+					//document.getElementById("name").focus();
 				}
 			}
 		}
