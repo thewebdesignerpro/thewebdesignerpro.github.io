@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="www.silentearthling.com" name="publisher">
+<meta content="Chris Boyle" name="director">
+<meta content="Armstrong Chiu" name="author">
+<meta name="robots" content="index, follow">
+<meta content="6 Days" name="revisit-after">
+<!--<meta content="GnUc9YX2x3ng9rJueX4Zo1m87s2WXH9vHaDV4kemc08" name="google-site-verification">-->
+<title>Three Trapped Tigers: Silent Earthling</title>
+<meta content="UK experimental band Three Trapped Tigers's new album, Silent Earthling, 2016. The site is a delightful WebGL experiment." name="description">
+<meta property="og:site_name" content="Three Trapped Tigers: Silent Earthling"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://silentearthling.com/"/>
+<meta property="og:title" content="Three Trapped Tigers: Silent Earthling"/>
+<meta property="og:description" content="UK experimental band Three Trapped Tigers's new album, Silent Earthling, 2016. The site is a delightful WebGL experiment." />
+<meta property="og:image" content="http://silentearthling.com/imj/ThreeTrappedTigers_SilentEarthling.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#b25b6c">
+<meta name="apple-mobile-web-app-title" content="Silent Earthling">
+<meta name="application-name" content="Silent Earthling">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#b25b6c">
+<!--<link media="all" type="text/css" href="css/stttyle.css" rel="stylesheet" />-->
+<link media="all" type="text/css" href="css/stttyle2.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="overLy1"><div id="loaderImage"></div></div>
+<div id="overLy"><div id="loaderImage2"></div></div>
+<div id="canvas"></div>
+<div id="player">
+<img id="acover" src="imj/TTT-SE-cover.jpg" alt="Three Trapped Tigers Silent Earthling Album Cover">
+<ul class="player-controls">
+<li class="player-prev" ><i class="icon-previous"></i></li>
+<li class="player-play" ><i class="icon-play"></i></li>
+<li class="player-pause" style="display:none;"><i class="icon-pause"></i></li>
+<li class="player-stop" ><i class="icon-pause"></i></li>
+<li class="player-next" ><i class="icon-next"></i></li>
+</ul>
+<div class="player-progress-container">
+<div class="player-progress-bar"></div>
+<span class="player-progress-text"></span>
+</div>
+<div id="volum"><input id="volumt" type="range" min="0.0" max="1.0" step="0.1" value="1.0" /></div>
+<ul class="player-playlist-container nano">
+<div class="content">
+<ul class="player-playlist"></ul>
+	<ul id="playlist-temp">
+		<li>01 Silent Earthling</li>
+		<li>02 Strebek</li>
+		<li>03 Kraken</li>
+		<li>04 Blimp</li>
+		<li>06 Tekkers</li>
+		<li>07 Hemisphere</li>
+		<li>08 Rainbow Road</li>
+		<li>09 Elsewhere</li>
+	</ul>
+<br><br><br><br><br><br>
+</div>
+</ul>
+<a id="playlstx" href="#" title="Close"><img src="imj/closx.png" alt=""></a>
+<a id="playlst" href="#" title="Open Playlist"><img src="imj/nab1.png" alt=""></a>    
+</div>
+<div id="sosyal">
+<div id="soclnks" class="nano">
+<div class="content">
+<h3>Three Trapped Tigers</h3>
+<h4>Website:</h4>
+<a href="http://www.threetrappedtigers.com/" title="" target="_blank">ThreeTrappedTigers.com</a>
+<h4>Facebook:</h4> 
+<a href="https://www.facebook.com/threetrappedtigers" title="" target="_blank">Follow us on Facebook</a>
+<h4>Twitter:</h4>
+<a href="https://twitter.com/3TrappedTigers" title="" target="_blank">Follow us on Twitter</a>
+<h4>Tour dates:</h4>
+<a href="https://www.bandsintown.com/ThreeTrappedTigers" title="" target="_blank">See Schedule</a>
+<h4>Spotify:</h4>
+<a href="http://bit.ly/seSPOTIFY" title="" target="_blank">Listen on Spotify</a>
+<br><br><br><br><br><br>
+</div>
+</div>
+<a id="sharerx" href="#" title="Close"><img src="imj/closx.png" alt=""></a>
+<a id="sharer" href="#" title="Share &amp; Follow"><img src="imj/nab2.png" alt=""></a>
+</div>
+<div id="buy">
+<div id="instr2" class="nano">
+<div class="content">
+<h3>Buy Tracks:</h3>
+<a href="http://smarturl.it/seAMAZONMP3" class="buys" target="_blank">Buy Amazon</a><br><br>
+<a href="http://smarturl.it/seITUNES" class="buys" target="_blank">Buy Itunes</a>
+<br><br><br><br>
+</div>
+</div>
+<a id="minfo2x" href="#" title="Close"><img src="imj/closx.png" alt=""></a>
+<a id="minfo2" href="#" title="Buy Tracks"><img src="imj/nab3.png" alt=""></a>
+</div>
+<div id="info">
+<div id="instr" class="nano">
+<div class="content">
+<h3>Help &amp; Credits:</h3>
+Use mouse or touchpad to orbit planetoid. Use mouse wheel or touchpad to zoom.<br><br>
+Created by<br><a href="http://www.chrisboyle.co.uk/" target="_blank">Chris Boyle</a><br>
+Coding by<br><a href="http://thewebdesignerpro.com/" target="_blank">Armstrong Chiu</a><br>
+Based on Euphony by Xueqiao Xu<br>
+Further Credit &amp; ​build available on <a href="http://www.chrisboyle.co.uk/CONTACT" target="_blank">request</a>.
+<!--Further Credit &amp; ​build available on <a href="mailto:hello@chrisboyle.co.uk" class="buys" target="_blank">request</a>.-->
+<br><br><br><br><br><br>
+</div>
+</div>
+<a id="minfox" href="#" title="Close"><img src="imj/closx.png" alt=""></a>
+<a id="minfo" href="#" title="Help info, Credits"><img src="imj/nab4.png" alt=""></a>
+</div>
+
+<script src="js/buffaudio/buffaudio.min.js"></script>
+<!--<script src="js/tttm.js"></script>-->
+<script src="js/tttm2.min.js"></script>
+<script src="js/lib/VersionControl.Base64.min.js"></script>
+<script src="js/lib/base64binary.min.js"></script>
+<script src="js/lib/stream.min.js"></script>
+<script src="js/lib/midifile.min.js"></script>
+<script src="js/lib/replayer.min.js"></script>
+<script src="js/lib/DOMLoader.XMLHttp.min.js"></script>
+<script src="js/lib/DOMLoader.script.min.js"></script>
+<script src="js/lib/MIDI.audioDetect.min.js"></script>
+<script src="js/lib/MIDI.loadPlugin.min.js"></script>
+<script src="js/lib/MIDI.Plugin.min.js"></script>
+<script src="js/lib/MIDI.Player.min.js"></script>
+<script src="js/lib/Color.min.js"></script>
+<script src="js/lib/MusicTheory.min.js"></script>
+<script src="js/lib/MusicTheory.Synesthesia.min.js"></script>
+<script src="js/lib/jquery-1.7.1.min.js"></script>
+<script src="js/lib/jquery.easing.min.js"></script>
+<script src="js/lib/jquery.nanoscroller.min.js"></script>
+<script src="js/ttt.min.js"></script>
+<script src="js/three.min.js"></script>
+<script src="js/Detector.min.js"></script>
+<script src="js/OrbitControls.min.js"></script>
+<script src="js/OBJLoader.min.js"></script>
+<script src="js/Mirror.min.js"></script>
+<script src="js/lib/state-machine.min.js"></script>
+<script src="js/lib/async.min.js"></script>
+<script src="js/src/PianoKeyboard2.min.js"></script>
+<script src="js/src/NoteRain.min.js"></script>
+<script src="js/src/Scene5.min.js"></script>
+<!--<script src="js/src/PlayerWidget.js"></script>-->
+<script src="js/src/PlayerWidget2.min.js"></script>
+<script src="js/src/Euphony.min.js"></script>
+<script src="js/src/Main.min.js"></script>
+
+</body>
+<!--<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-56179445-1', 'auto');
+ga('send', 'pageview');
+</script>-->
+</html>
