@@ -106,6 +106,8 @@ function init() {
 		ui.kontainer.addEventListener('gesturechange', function (e) {
 			e.preventDefault();
 		}, false);		
+		
+		_.prevW = _.prevH = 0; 			
     }
 	
 	dummy.parentNode.removeChild(dummy);		
@@ -1751,7 +1753,7 @@ function wheelE( event ) {
 	_.idleTimer = 0;
 }	
 
-function onWindowResize() {
+function onWindowResize( event ) { 
     _.width = window.innerWidth;
     _.height = window.innerHeight;
     
@@ -1773,6 +1775,18 @@ function onWindowResize() {
         }
     }
     */
+	
+	if ((isMobil) && (event)) {	
+		if (_.width == _.prevW) {
+			_.width = _.prevH; 
+			_.height = _.prevW; 
+		}
+		
+		_.prevW = _.width; 
+		_.prevH = _.height; 		
+	}	
+	
+	//console.log(_.width);
 	
     _.widthH = _.width / 2;
     _.heightH = _.height / 2;        	
