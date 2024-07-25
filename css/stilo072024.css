@@ -752,6 +752,47 @@ body.bgb, body.bgb #kontainer {
 }
 
 
+/* bakrums */
+#options {
+	display: block; 
+	position: absolute; 
+	top: 43%; 
+	right: 1.5%; 
+	width: 60px; 
+	height: auto; 
+	background: transparent; 
+	border: 0; 
+	margin: 0; 
+	padding: 0; 
+	z-index: 1000; 
+}
+
+#options a {
+	display: block; 
+}	
+
+#options img {
+	width: 60px; 
+	max-width: 60px; 
+	margin: 10px 0; 
+	opacity: .15; 
+}
+
+#options img:hover {
+	opacity: .8; 
+}	
+
+@media screen and (orientation: portrait) {
+	#options {
+		right: 2%; 
+		width: 45px;
+	}
+	
+	#options img {
+		width: 45px; 	
+	}
+}	
+
 #fader {
 	position: absolute;
     top: 0;
