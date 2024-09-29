@@ -10,7 +10,7 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 //import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 //import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'; 
 //import TWEEN from 'three/addons/libs/tween.module.js';
-//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 //import { Reflector } from 'three/addons/objects/Reflector.js';
 
 const idleTO = 120, florY = -100, ceilY = 140;  
@@ -1753,8 +1753,7 @@ function wheelE( event ) {
 	_.idleTimer = 0;
 }	
 
-//function onWindowResize( event ) { 
-function onWindowResize() { 
+function onWindowResize( event ) { 
     _.width = window.innerWidth;
     _.height = window.innerHeight;
     
@@ -1775,7 +1774,7 @@ function onWindowResize() {
             _.height = tmpWW;
         }
     }
-    
+    */
 	
 	if ((isMobil) && (event)) {	
 		if (_.width == _.prevW) {
@@ -1786,17 +1785,6 @@ function onWindowResize() {
 		_.prevW = _.width; 
 		_.prevH = _.height; 		
 	}	
-	*/
-	
-	if (isMobil) {
-		if (_.width == _.prevW) {
-			_.width = _.prevH; 
-			_.height = _.prevW; 
-		}
-		
-		_.prevW = _.width; 
-		_.prevH = _.height; 		
-	}
 	
 	//console.log(_.width);
 	
