@@ -2,7 +2,6 @@
  * author Armstrong "Army" Chiu
  * URL: https://thewebdesignerpro.com/
  */
-
  
 html, body {
 	box-sizing: border-box;
@@ -52,78 +51,168 @@ canvas {
 	}
 }
 
-
-@media screen and (orientation: landscape) {
-
-	@media (hover:none), (hover:on-demand) {
-
-	}
-}
-
-@media (hover:none), (hover:on-demand) {
-	/*	iPad (not pro) styles	 */
-	@media only screen and (width : 1024px) and (height : 768px) {
-
-	}
-
-	@media only screen and (width : 768px) and (height : 1024px) {
-
-	}
-
-	/*	iPad Pro styles	 */
-	@media only screen and (width : 1366px) and (height : 1024px) {
-
-	}
-
-	@media only screen and (width : 1024px) and (height : 1366px) {
-
-	}
-
-	@media screen and (orientation: portrait) {
-
-	}
-}
-
-
-
-
 #konfigPanel {
-	display: block; 
-	position: absolute; 
-	top: 0; 
-	right: 0; 
-	width: 320px; 
-	height: auto; 
-	background: rgba(255, 255, 255, .7); 
-	border: 0; 
-	margin: 0; 
-	padding: 0; 
-	z-index: 1000; 
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 467px;
+    background: rgba(180, 190, 200, .7);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    backdrop-filter: blur(5px);
+	padding: 20px; 
 }
 
-#options a {
-	display: block; 
+.accordion {
+	background-color: transparent;
+	color: #3d3d3d;
+	cursor: pointer;
+	padding: 12px 10px;
+	width: 100%;
+	font: 17px sans-serif;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+}
+
+.accordion:hover {
+	background: rgba(180, 190, 200, .8);
+}
+
+.accordion:after {
+	content: "\2B9F"; 
+	font-size: 13px;
+	color: #8b8b8b;
+	float: right;
+	margin-left: 5px;
+}
+
+.active:after {
+	content: "\2B9D"; 
+}
+
+.panel {
+	padding: 0 10px;
+	background-color: transparent;
+	/*display: none;*/
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;  
+}
+
+#panel1 > a {
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    color: #c7b299;
+    background: #c7b299;
+	border-radius: 50%; 
+	border: 3px solid rgba(200, 210, 220, .8); 
+    box-sizing: border-box; 
+	transition: 0.3s;
 }	
 
-#options img {
-	width: 60px; 
-	max-width: 60px; 
-	margin: 10px 0; 
-	opacity: .2; 
+#panel1 > a:nth-child(2) {
+	background: #cd7f32;
 }
 
-#options img:hover {
-	opacity: .8; 
+#panel1 > a:nth-child(3) {
+	background: #1c1c1c;
+}
+
+#panel1 > a:nth-child(4) {
+	background: #f0f0f0;
+}
+
+#panel1 > a:nth-child(5) {
+	background: #773f1a;
+}
+
+#panel1 > a:hover {
+	border: 3px solid rgba(200, 210, 220, .1); 
+}	
+
+#panel2 {
+	font: 17px sans-serif; 
+	color: #555; 
+}
+
+#panel2 > p {
+	margin: 10px 0; 
+}
+
+#panel2 > div {
+	display: inline-block; 
+    width: 40px;
+	background: rgba(220, 220, 220, .5);
+    text-align: right;
+}
+	
+.slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 10px;
+  border-radius: 5px;  
+  background: #8391a4;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%; 
+  background: #1a5195;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #1a5195;
+  cursor: pointer;
+}
+
+#panel3 > a {
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    color: #222;
+    background: rgb(200, 210, 220); 
+	border-radius: 7px; 
+    box-sizing: border-box; 
+	transition: 0.3s;
+	font: 14px / 35px sans-serif; 
+    text-align: center; 
+    text-decoration: none; 
+	margin-right: 5px; 
+}
+
+#panel3 > a:hover, 
+#panel3 > a.selected {
+    color: #eee;
+    background: #1f6091;	
 }	
 
 @media screen and (orientation: portrait) {
-	#options {
-		right: 2%; 
-		width: 45px;
-	}
-	
-	#options img {
-		width: 45px; 	
+	#konfigPanel {
+		top: auto;
+		bottom: 0; 
+		right: 0;
+		width: 320px;
+		height: 465px;
+		margin: 0;
 	}
 }	
 
@@ -183,5 +272,37 @@ canvas {
 
 .noneIt2 {
 	display: none !important; 
+}
+
+
+@media screen and (orientation: landscape) {
+
+	@media (hover:none), (hover:on-demand) {
+
+	}
+}
+
+@media (hover:none), (hover:on-demand) {
+	/*	iPad (not pro) styles	 */
+	@media only screen and (width : 1024px) and (height : 768px) {
+
+	}
+
+	@media only screen and (width : 768px) and (height : 1024px) {
+
+	}
+
+	/*	iPad Pro styles	 */
+	@media only screen and (width : 1366px) and (height : 1024px) {
+
+	}
+
+	@media only screen and (width : 1024px) and (height : 1366px) {
+
+	}
+
+	@media screen and (orientation: portrait) {
+
+	}
 }
 

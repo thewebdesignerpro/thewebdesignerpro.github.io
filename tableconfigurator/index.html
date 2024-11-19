@@ -24,6 +24,41 @@
 
 	<div id="kontainer"></div> 
 	
+	<div id="konfigPanel">
+		<button class="accordion">Top material</button>
+		
+		<div id="panel1" class="panel">
+			<a id="ashwood" href="#" title="Ashwood"></a>
+			<a id="cedar" href="#" title="Cedar"></a>
+			<a id="plasticBlack" href="#" title="Plastic Black"></a>
+			<a id="plasticWhite" href="#" title="Plastic White"></a>
+			<a id="walnut" href="#" title="Walnut"></a>
+		</div>
+		
+		<button class="accordion">Sizes</button>
+		
+		<div id="panel2" class="panel">
+			<p>Width (mm)</p>
+			<div id="tableWidthVal">1200</div>
+			<input id="tableWidth" class="slider" type="range" min="1200" max="2400" value="1200">
+
+			<p>Depth (mm)</p>
+			<div id="tableDepthVal">300</div>
+			<input id="tableDepth" class="slider" type="range" min="300" max="900" value="300">
+
+			<p>Leg height (mm)</p>
+			<div id="legHeightVal">500</div>
+			<input id="legHeight" class="slider" type="range" min="500" max="1200" value="500">
+		</div>
+		
+		<button class="accordion">Feet</button>
+		
+		<div id="panel3" class="panel">
+			<a id="variant1" class="selected" href="#">Variant 1</a>
+			<a id="variant2" href="#">Variant 2</a>
+		</div> 	
+	</div> 
+	
 	<script type="importmap">
 		{
 			"imports": {

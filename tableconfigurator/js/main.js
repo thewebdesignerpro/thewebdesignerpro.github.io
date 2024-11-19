@@ -6,14 +6,12 @@
 import * as THREE from 'three';
 import WebGL from 'three/addons/capabilities/WebGL.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-//import TWEEN from 'three/addons/libs/tween.module.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const idleTO = 120, florY = 0;  
 
 let camera, scene, renderer, clock; 
 let isMobil = false; 
-//let mouseX = 0, mouseY = -50;  
 const ui = {}, _ = {}, x = {}; 
 let controls; 
 
@@ -30,17 +28,7 @@ if ( WebGL.isWebGL2Available() ) {
 	const warning = WebGL.getWebGL2ErrorMessage();
     kontainer.appendChild(warning);	
 	
-	//kontainer.style.background = "url('img/thewebdesignerprol.jpg') center top no-repeat"; 
-	//kontainer.style.background = "url('img/autumnforestl.jpg') center top no-repeat"; 
 	kontainer.style.backgroundSize = "cover"; 
-	
- 	//fader.style.opacity = 0;
-    //fader.style.display = "none";
-	//fader.parentNode.removeChild(fader);	
-	
-	//cL(loadr, 0, "paus");
-	//loadr.style.display = "none";	
-	//loadr.parentNode.removeChild(loadr);		
 }
 
 function eL(e, aor, evt, f) {
@@ -106,13 +94,30 @@ function init() {
 	
 	dummy.parentNode.removeChild(dummy);		
 	
+	ui.ashwood = $('ashwood'); 
+	ui.cedar = $('cedar'); 
+	ui.plasticBlack = $('plasticBlack'); 
+	ui.plasticWhite = $('plasticWhite'); 
+	ui.walnut = $('walnut'); 
+	
+	ui.tableWidthVal = $('tableWidthVal'); 
+	ui.tableWidth = $('tableWidth'); 
+	
+	ui.tableDepthVal = $('tableDepthVal'); 
+	ui.tableDepth = $('tableDepth'); 
+	
+	ui.legHeightVal = $('legHeightVal'); 
+	ui.legHeight = $('legHeight'); 
+	
+	ui.variant1 = $('variant1'); 
+	ui.variant2 = $('variant2'); 
+	
 	_.width = window.innerWidth; 
 	_.height = window.innerHeight; 
 	
     document.body.style.width = ui.kontainer.style.width = _.width + 'px';
     document.body.style.height = ui.kontainer.style.height = _.height + 'px';    
 
-    //ui.kontainer.style.opacity = 0;		
     ui.kontainer.style.backgroundColor = '#fff';		
 
 	const fogCol = 0xffffff; 
@@ -123,10 +128,6 @@ function init() {
 	renderer.setClearColor(fogCol, 1.0); 
 	renderer.shadowMap.enabled = true;
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
-	//renderer.shadowMap.type = THREE.VSMShadowMap; 
-	//renderer.toneMapping = THREE.ACESFilmicToneMapping;	
-	//renderer.outputEncoding = THREE.sRGBEncoding; 
-	//renderer.outputColorSpace = THREE.SRGBColorSpace; 
 	renderer.outputColorSpace = THREE.LinearSRGBColorSpace; 
 	renderer.sortObjects = false;	
 	ui.kontainer.appendChild(renderer.domElement); 
@@ -145,79 +146,46 @@ function init() {
 	
     scene = new THREE.Scene();
 	scene.fog = new THREE.FogExp2(fogCol, 0.00023);	
-	//scene.fog.density = 0.0037;
 	
-	//grups[0] = new THREE.Group(); 
-	//grups[1] = new THREE.Group(); 
-
 	camera = new THREE.PerspectiveCamera( 50, _.width / _.height, .5, 20000 );
 	camera.position.set(0, 250, 1200); 
-	//camera.lookAt( 0, 0, 0 );
-
     scene.add(camera);	
 
-	//grups[0].add(camera);		
-	
 	scene.add( new THREE.AmbientLight( 0x888888 ) );	
 
-//	x.spotLcone = []; 
-	
 	x.spotLight = []; 
 	
 	x.spotLight[0] = new THREE.SpotLight( 0xffffff, 15000000, 4000, Math.PI/5, 1 );
 	x.spotLight[0].position.set( 0, 1500, 1500 );
 	x.spotLight[0].castShadow = true;
-	//x.spotLight.shadow = new THREE.SpotLightShadow(camera);	
 	x.spotLight[0].shadow.mapSize.width = 1536;
 	x.spotLight[0].shadow.mapSize.height = 1536;
 	x.spotLight[0].shadow.camera.near = 40;
 	x.spotLight[0].shadow.camera.far = 4000;
 	x.spotLight[0].shadow.camera.fov = 56;
-	//x.spotLight[0].shadow.focus = 1; 
-	//x.spotLight[0].shadowDarkness = 1.; 
-	//x.spotLight[0].power = 10000000;
-	
 	x.spotLight[0].shadow.intensity = .5;
 	
 	scene.add( x.spotLight[0] );	
 
-	//x.spotLightHelper = new THREE.SpotLightHelper( x.spotLight[0] );
-	//scene.add( x.spotLightHelper );
-
-	//x.spotLight[0].target = camera; 
-	
-	//const helper = new THREE.CameraHelper( x.spotLight[0].shadow.camera );
-	//scene.add( helper );	
-	
-	//window.removeEventListener("load", init, false);
-	//window.addEventListener('resize', onWindowResize, false); 
-	
 	eL(window, 1, "load", init); 
 	eL(window, 0, "resize", onWindowResize); 
 	
-	//TEMP!!
 	controls = new OrbitControls( camera, renderer.domElement );
     controls.enableDamping = true;
     controls.dampingFactor = .2;
     controls.autoRotateSpeed = 1.6;	
     controls.autoRotate = false;    
     controls.minDistance = 1;
-    //controls.maxDistance = 2000;    
     controls.maxDistance = 3000;    
-    //controls.minPolarAngle = Math.PI/3;    
     controls.rotateSpeed = .3;
-    controls.zoomSpeed = 5;
-    controls.panSpeed = 8;
-	//controls.update();		
-//controls.enabled = false; 
-
+    controls.zoomSpeed = 1; 
+    controls.panSpeed = 4;
 	
     clock = new THREE.Clock();	
 	clock.autoStart = false; 	
 	//clock.start(); 		
 	
 	_.mouse = new THREE.Vector2(); 	
-	//_.entro = true; 
 	_.idleTimer = 0; 
 	_.fokus = true; 
 	
@@ -226,33 +194,19 @@ function init() {
 
 	_.ptrDown = false; 
 
-	
 	x.target0 = new THREE.Object3D(); 
 	x.target0.position.set(0, 250, 0); 
 	scene.add(x.target0);
 	
-//	x.spotLight[0].target = x.target0; 
-	
 	controls.target = x.target0.position; 	
-	
-	//x.spotLightHelper = new THREE.SpotLightHelper( x.spotLight[0] );
-	//scene.add( x.spotLightHelper );	
 	
 	addSkybox();
 	
-	//addFloor();
-	//tableTop(); 
-	//loadLegs(); 
-	
-
 	onWindowResize(); 
-	
-	//fadeScene(); 
 }
 
 function addSkybox() {
 	const f = '.png'; 
-	//const f = '.jpg'; 
 	const loader = new THREE.CubeTextureLoader();
 	loader.setPath( 'images/skybox/2/' );
 
@@ -260,29 +214,8 @@ function addSkybox() {
 		'posx'+f, 'negx'+f,
 		'posy'+f, 'negy'+f,
 		'posz'+f, 'negz'+f
-		//'left'+f, 'right'+f,
-		//'top'+f, 'bottom'+f,
-		//'back'+f, 'front'+f
-		//'3'+f, '1'+f,
-		//'5'+f, '4'+f,
-		//'6'+f, '2'+f
 	], function ( tx ) {
-		//tx.flipY = true; 
-		//tx.colorSpace = THREE.LinearSRGBColorSpace;	
-		//tx.mapping = THREE.CubeRefractionMapping;	
-		
 		x.skybox = tx; 
-
-		//fadeScene(); 
-		
-		//scene.backgroundRotation.set(0, 3.8, 0); 
-	//	scene.backgroundRotation.set(0, (Math.PI/-2) + .64, 0); 
-		//scene.backgroundBlurriness = .2; 
-		//scene.backgroundIntensity = 3; 
-		
-		//scene.background = x.skybox; 
-		//scene.environment = x.skybox; 
-		//scene.environmentIntensity = 5; 
 		
 		addFloor(); 	
 		loadLegs(); 
@@ -291,27 +224,18 @@ function addSkybox() {
 }
 
 function addFloor() {
-	//x.floor = []; 
-	
 	let width = 20000, 
 		height = 20000,  
-		//posX = 0, 
 		rez = 1,  
-		//intrvl = 400, 
 		kolor = 0xffffff; 
 		
 	const geometry = new THREE.PlaneGeometry( width, height, rez, rez );
-
 	const material = new THREE.MeshStandardMaterial( { color: kolor, roughness: 1, metalness: 0 } );
-	//material.reflectivity = .5;		
-	//material.envMapIntensity = .2; 
-	//material.envMap = x.skybox; 
 	
 	x.floor = new THREE.Mesh( geometry, material ); 
 
 	x.floor.position.set(0, florY, 0);
 	x.floor.rotation.x = Math.PI/-2;
-	//x.floor.castShadow = true; 
 	x.floor.receiveShadow = true; 
 	
 	scene.add( x.floor ); 
@@ -324,30 +248,24 @@ function addFloor() {
 
 	loader1.load( url + 'color.jpg', function(tx1) { 	
 		tx1.wrapS = tx1.wrapT = THREE.RepeatWrapping;    
-		//tx1.wrapS = tx1.wrapT = THREE.MirroredRepeatWrapping;    
 		tx1.repeat.set(rep, rep);    
 		
 		x.floor.material.map = tx1; 
 		x.floor.material.needsUpdate = true;
-		//x.floor.visible = true; 
 	});  		
 
 	loader2.load( url + 'normal.jpg', function(tx2) { 	
 		tx2.wrapS = tx2.wrapT = THREE.RepeatWrapping;    
-		//tx2.wrapS = tx2.wrapT = THREE.MirroredRepeatWrapping;    
 		tx2.repeat.set(rep, rep);    
 		
 		x.floor.material.normalScale.set(1, 1); 
 		x.floor.material.normalMap = tx2; 
 		x.floor.material.needsUpdate = true;
-		//x.floor.visible = true; 
 	});  		
 
 	loader3.load( url + 'rough.jpg', function(tx3) { 	
 		tx3.wrapS = tx3.wrapT = THREE.RepeatWrapping;    
-		//tx3.wrapS = tx3.wrapT = THREE.MirroredRepeatWrapping;    
 		tx3.repeat.set(rep, rep);    
-		//tx3.flipY = true;
 		
 		x.floor.material.roughnessMap = tx3; 
 		x.floor.material.needsUpdate = true;
@@ -356,7 +274,6 @@ function addFloor() {
 }
 
 function loadLegs() {
-	//let meshCount = 0; 
 	x.legs = []; 
 	x.screws = []; 
 	let material = []; 
@@ -366,43 +283,14 @@ function loadLegs() {
 	const loader = new OBJLoader();
 	
 	loader.load( 'objects/leg/leg.obj', function ( object ) {
-		//console.log(object);
-		
 		object.traverse( function ( child ) {
-			if ( child.isMesh ) {
-				//console.log(child);
-				//console.log(child.geometry.name);
-				//console.log(child.material.length);
-				
-				//child.geometry.computeVertexNormals();	
-				child.geometry.computeBoundingBox();		
-				
-				//child.castShadow = true; 
-				//child.receiveShadow = true; 
-				
-				//meshCount += 1; 
-			}
-			
-			//if (child.isMaterial) {
-				//console.log('mat'); 
-			//}
+			if ( child.isMesh ) child.geometry.computeBoundingBox();		
 		});	
 		
-		//console.log(meshCount); 
-		
-		//const material2 = new THREE.MeshBasicMaterial( { color: 0xccb7b4, transparent: true, fog: false } );	
 		material[0] = new THREE.MeshStandardMaterial( { color: 0xffffff, roughness: .85, metalness: .5 } );
 		material[1] = new THREE.MeshStandardMaterial( { color: 0xc9c9c9, roughness: .5, metalness: 1 } );
-		//material.depthWrite = false; 
-		//material[1].side = THREE.DoubleSide; 
-		//material.opacity = .7; 
-		//material.emissive.set(0xffffff); 
-	//	material.combine = THREE.MixOperation;
-		//material[0].reflectivity = 5;		
 		material[0].envMapIntensity = material[1].envMapIntensity = .5; 
 		material[0].envMap = material[1].envMap = x.skybox; 
-		
-		//x.legs.visible = false; 
 		
 		let posX = 582,  
 			posX2 = 582, 
@@ -419,7 +307,6 @@ function loadLegs() {
 			x.legs[h].rotation.y = Math.PI/2; 
 			x.legs[h].scale.set(_.legsScale, _.legsScale, _.legsScale); 
 		
-			//grups[0].add( x.legs[h] );		
 			scene.add( x.legs[h] );		
 		}		
 
@@ -437,7 +324,6 @@ function loadLegs() {
 			x.screws[i].rotation.y = rotY2; 
 			x.screws[i].scale.set(_.legsScale, _.legsScale, _.legsScale); 
 		
-			//grups[0].add( x.screws[i] );		
 			scene.add( x.screws[i] );		
 		}		
 
@@ -452,7 +338,6 @@ function loadLegs() {
 				x.legs[j].material.map = tx1; 
 				x.legs[j].material.needsUpdate = true; 
 			}
-			//x.legs.visible = true; 
 		}); 			
 
 		load2.load( url + 'normal.jpg', function(tx2) { 
@@ -477,35 +362,14 @@ function loadLegs() {
 }
 
 function loadProp1() {
-	//let meshCount = 0; 
 	x.prop1 = []; 
 	
 	const loader = new OBJLoader();
 	
 	loader.load( 'objects/prop1/prop01.obj', function ( object ) {
-		//console.log(object);
-		
 		object.traverse( function ( child ) {
-			if ( child.isMesh ) {
-				//console.log(child);
-				//console.log(child.geometry.name);
-				//console.log(child.material.length);
-				
-				//child.geometry.computeVertexNormals();	
-				child.geometry.computeBoundingBox();		
-				
-				//child.castShadow = true; 
-				//child.receiveShadow = true; 
-				
-				//meshCount += 1; 
-			}
-			
-			//if (child.isMaterial) {
-				//console.log('mat'); 
-			//}
+			if ( child.isMesh ) child.geometry.computeBoundingBox();		
 		});	
-		
-		//console.log(meshCount); 
 		
 		const material = new THREE.MeshPhongMaterial( { color: 0x999999 } );
 
@@ -522,7 +386,6 @@ function loadProp1() {
 			if ((h%2)==0) posZ *= -1; 
 			
 			x.prop1[h].position.set(posX, florY, posZ); 
-			//x.prop1[h].rotation.y = Math.PI/2; 
 			x.prop1[h].scale.set(_.legsScale, _.legsScale, _.legsScale); 
 		
 			scene.add( x.prop1[h] );		
@@ -534,37 +397,14 @@ function loadProp1() {
 }
 
 function loadProp2() {
-	//let meshCount = 0; 
 	x.prop2 = []; 
-	
-	//_.legsScale = 500; 
 
 	const loader = new OBJLoader();
 	
 	loader.load( 'objects/prop2/prop02.obj', function ( object ) {
-		//console.log(object);
-		
 		object.traverse( function ( child ) {
-			if ( child.isMesh ) {
-				//console.log(child);
-				//console.log(child.geometry.name);
-				//console.log(child.material.length);
-				
-				//child.geometry.computeVertexNormals();	
-				child.geometry.computeBoundingBox();		
-				
-				//child.castShadow = true; 
-				//child.receiveShadow = true; 
-				
-				//meshCount += 1; 
-			}
-			
-			//if (child.isMaterial) {
-				//console.log('mat'); 
-			//}
+			if ( child.isMesh ) child.geometry.computeBoundingBox();		
 		});	
-		
-		//console.log(meshCount); 
 		
 		const material = new THREE.MeshPhongMaterial( { color: 0x999999 } );
 
@@ -581,10 +421,7 @@ function loadProp2() {
 			if ((h%2)==0) posZ *= -1; 
 			
 			x.prop2[h].position.set(posX, florY, posZ); 
-			//x.prop2[h].rotation.y = Math.PI/2; 
 			x.prop2[h].scale.set(_.legsScale, _.legsScale, _.legsScale); 
-		
-			//scene.add( x.prop2[h] );		
 		}		
 
 		tableTop(); 
@@ -685,18 +522,14 @@ function tableTop() {
 		
 }
 
-	
-	
 function fadeScene() {
 	onWindowResize(); 	
 	
     (function fadeIn() {
 		let val = parseFloat(ui.fader.style.opacity); 
 		
-        //if (!((val += .02) > 1.0)) {
 		if (!((val -= .05) < 0)) {
  			ui.fader.style.opacity = val;
-			//console.log(ui.fader.style.opacity); 			
             
 			requestAnimationFrame(fadeIn); 
         } else {
@@ -706,17 +539,13 @@ function fadeScene() {
 			
 			onWindowResize(); 			
 			
-			//ui.kontainer.addEventListener("wheel", wheelE, { passive: false });			
-			
 			eL(ui.kontainer, 0, 'pointerdown', onPointerDown); 
 			eL(ui.kontainer, 0, "pointermove", onPointerMove); 
-			//eL(ui.kontainer, 0, "wheel", wheelE); 
 			
 			animate();  
 			
-			//theOptions(); 
+			thePanel(); 
 			
-			//if (!ui.loadr.classList.contains("paus")) ui.loadr.classList.add("paus"); 
 			cL(ui.loadr, 0, "paus");
 			ui.loadr.style.display = "none";	
 			ui.loadr.parentNode.removeChild(ui.loadr);			
@@ -724,7 +553,138 @@ function fadeScene() {
     })();	
 }	
 
+function thePanel() {
+	let acc = document.getElementsByClassName("accordion");
+	
+	for (let i = 0; i < acc.length; i++) {
+		acc[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+		
+			let panel = this.nextElementSibling;
+			
+			if (panel.style.maxHeight) {
+				panel.style.maxHeight = null;
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + "px";
+			} 
+		});
+	} 	
+	
+	eL(ui.ashwood, 0, 'click', onAshwoodClick); 
+	eL(ui.cedar, 0, 'click', onCedarClick); 
+	eL(ui.plasticBlack, 0, 'click', onPlasticBlackClick); 
+	eL(ui.plasticWhite, 0, 'click', onPlasticWhiteClick); 
+	eL(ui.walnut, 0, 'click', onWalnutClick); 
+	
+	eL(ui.tableWidth, 0, 'input', ontableWidthSlide); 
+	eL(ui.tableDepth, 0, 'input', ontableDepthSlide); 
+	eL(ui.legHeight, 0, 'input', onlegHeightSlide); 
+	
+	eL(ui.variant1, 0, 'click', onVariant1Click); 
+	eL(ui.variant2, 0, 'click', onVariant2Click); 
+}
 
+function tableTopMaterial(color, idx) {
+	x.tableTop.material.color.set(color); 
+	x.tableTop.material.roughness = x.ttRoughness[idx]; 
+	
+	x.tableTop.material.normalMap = x.ttNormalMap[idx]; 	
+	x.tableTop.material.roughnessMap = x.tableTop.material.metalnessMap = x.ttRoughMap[idx]; 
+	
+	x.tableTop.material.needsUpdate = true; 	
+}
+
+function onAshwoodClick( event ) {
+	if (event) event.preventDefault();
+	
+	tableTopMaterial(x.ttColor[0], 0); 
+}
+
+function onCedarClick( event ) {
+	if (event) event.preventDefault();
+	
+	tableTopMaterial(x.ttColor[1], 1); 
+}
+
+function onPlasticBlackClick( event ) {
+	if (event) event.preventDefault();
+	
+	tableTopMaterial(x.ttColor[2], 2); 
+}
+
+function onPlasticWhiteClick( event ) {
+	if (event) event.preventDefault();
+	
+	tableTopMaterial(x.ttColor[3], 3); 
+}
+
+function onWalnutClick( event ) {
+	if (event) event.preventDefault();
+	
+	tableTopMaterial(x.ttColor[4], 4); 
+}
+
+function ontableWidthSlide( event ) {
+	if (event) event.preventDefault(); 
+	
+	let slideVal = Math.round(this.value); 
+	
+	ui.tableWidthVal.innerHTML = slideVal;
+	
+	x.tableTop.scale.x = slideVal; 
+}	
+
+function ontableDepthSlide( event ) {
+	if (event) event.preventDefault(); 
+	
+	let slideVal = Math.round(this.value); 
+	
+	ui.tableDepthVal.innerHTML = slideVal;
+	
+	x.tableTop.scale.y = slideVal; 
+}	
+
+function onlegHeightSlide( event ) {
+	if (event) event.preventDefault(); 
+	
+	let slideVal = Math.round(this.value); 
+	
+	ui.legHeightVal.innerHTML = slideVal;
+	
+	for ( let i = 0; i < 2; i++ ) {	
+		x.legs[i].scale.y = slideVal; 
+		x.legs[i].position.y = (slideVal - 500) * -.02; 
+		
+		x.screws[i].position.y = (slideVal - 500) * .93; 
+	}
+	
+	_.legsScale = slideVal; 
+	x.tableTop.position.y = (slideVal - 500) * .95 + 500;   
+}	
+
+function onVariant1Click( event ) {
+	if (event) event.preventDefault(); 
+	
+	cL(ui.variant1, 0, "selected");
+	cL(ui.variant2, 1, "selected");
+	
+	for ( let i = 0; i < 4; i++ ) {	
+		scene.remove(x.prop2[i]); 
+		scene.add(x.prop1[i]); 
+	}
+}
+
+function onVariant2Click( event ) {
+	if (event) event.preventDefault(); 
+	
+	cL(ui.variant1, 1, "selected");
+	cL(ui.variant2, 0, "selected");	
+	
+	for ( let i = 0; i < 4; i++ ) {	
+		scene.remove(x.prop1[i]); 
+		scene.add(x.prop2[i]); 
+	}	
+}
 
 
 function onPointerDown( event ) {
@@ -745,10 +705,6 @@ function onPointerDown( event ) {
 	_.pointer.x = pointer.x;
 	_.pointer.y = pointer.y; 	
 		
-	//eL(ui.kontainer, 0, 'pointerup', onPointerUp); 
-	//eL(ui.kontainer, 0, 'pointerout', onPointerOut); 
-	//eL(ui.kontainer, 0, 'pointercancel', onPointerCancel); 
-	
 	_.idleTimer = 0; 
 }	
 
@@ -782,25 +738,6 @@ function onWindowResize() {
     _.width = window.innerWidth;
     _.height = window.innerHeight;
     
-	/*
-	if (isMobil) {
-        let winWH = document.documentElement.getBoundingClientRect();
-        let winWHx = document.documentElement.clientWidth, 
-            winWHy = document.documentElement.clientHeight;
-        if (winWH) {
-            _.width = winWH.width;
-            _.height = winWH.height;
-        } else if (winWHx) {
-            _.width = winWHx;
-            _.height = winWHy;            
-        } else {
-            let tmpWW = _.width;
-            _.width = _.height; 
-            _.height = tmpWW;
-        }
-    }
-    */
-	
 	if (isMobil) {
 		if (_.width == _.prevW) {
 			_.width = _.prevH; 
@@ -822,23 +759,8 @@ function onWindowResize() {
 
 	renderer.setSize(_.width, _.height);	
 
-	//x.xx = 160; 
-	
-	if (_.width > _.height) {
-	//	cntnt.style.fontSize = cntnt2.style.fontSize = ((_.width+_.height)/2)*0.022+'px';
-	} else {
-	//	cntnt.style.fontSize = cntnt2.style.fontSize = ((_.width+_.height)/2)*0.028+'px';
-	
-		//if (isMobil) x.xx = 300; 
-	}		
-	
-	
 	_.idleTimer = 0; 
 }
-
-
-
-
 
 function animate() { 
     requestAnimationFrame(animate);
@@ -846,12 +768,6 @@ function animate() {
 	if (_.idleTimer < idleTO) {
 		if (!clock.running) clock.start(); 
 		const timer = Date.now() * 0.00005; 
-		//console.log(Math.cos(timer)); 
-		
-	//	const delta = clock.getDelta() * .3;
-		
-		
-
 
 		_.idleTimer += 0.01; 
 		
@@ -869,18 +785,13 @@ function animate() {
 		_.idleTimer = idleTO; 	
 		_.fokus = false; 
 	}	
-	
-//	TWEEN.update();	
+
 }
 
 function render() {
-	//camera.lookAt(scene.position); 	
-	//camera.lookAt(0, 10000, 0); 	
 	camera.lookAt(x.target0.position);
 	
 	controls.update(); 
-	
-	//x.spotLightHelper.update();
 	
 	renderer.render( scene, camera );	
 }
