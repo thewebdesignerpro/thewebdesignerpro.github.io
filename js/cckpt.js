@@ -49,7 +49,7 @@ if ( WebGL.isWebGL2Available() ) {
     kontainer.appendChild(warning);	
 	
 	//kontainer.style.background = "url('img/thewebdesignerprol.jpg') center top no-repeat"; 
-	kontainer.style.background = "url('img/cockpitl.jpg') center top no-repeat"; 
+	kontainer.style.background = "url('img/spacesiml.jpg') center top no-repeat"; 
 	kontainer.style.backgroundSize = "cover"; 
 	
  	fader.style.opacity = 0;
