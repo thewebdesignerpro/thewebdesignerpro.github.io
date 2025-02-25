@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!--<meta content="width=device-width, initial-scale=1" name="viewport">-->
 <meta content="https://thewebdesignerpro.com" name="publisher">
 <meta content="Armstrong Chiu" name="author">
 <meta name="robots" content="index, follow">
-<meta content="6 Days" name="revisit-after">
+<meta content="7 Days" name="revisit-after">
 <meta content="GnUc9YX2x3ng9rJueX4Zo1m87s2WXH9vHaDV4kemc08" name="google-site-verification">
-<title>The Web Designer Pro</title>
-<meta content="Web Design and Development, Graphics Design, Responsive Websites, Wordpress Customization, Animation, 3D rendering and animation, Facebook Contest App Development, Woobox, WooCommerce, e-Commerce, SEO." name="description">
+<title>Car Visualization</title>
+<meta content="Car Visualization, configurator, WebGL, Threejs, demo by @armychiu." name="description">
 <meta property="og:site_name" content="The Web Designer Pro"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://thewebdesignerpro.com/"/>
-<meta property="og:title" content="The Web Designer Pro"/>
-<meta property="og:description" content="Web Design and Development, Graphics Design, Responsive Websites, Wordpress Customization, Animation, 3D rendering and animation, Facebook Contest App Development, Woobox, WooCommerce, e-Commerce, SEO." />
-<meta property="og:image" content="https://thewebdesignerpro.com/imj/thewebdesignerpro.png" />
+<meta property="og:title" content="Car Visualization"/>
+<meta property="og:description" content="Car Visualization, configurator, WebGL, Threejs, demo by @armychiu." />
+<meta property="og:image" content="https://thewebdesignerpro.com/imj/carviz.png" />
 <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -34,13 +38,28 @@
 <meta name="msapplication-TileColor" content="#2b5797">
 <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<link media="all" type="text/css" href="css/stilo.css" rel="stylesheet">
+<link media="all" type="text/css" href="css/stilo022025.css" rel="stylesheet">
+<script type="text/javascript" src="js/fcp/colorpicker.min.js"></script>
+<!--<script src="js/hx/extract.js"></script>-->
 <!--[if lt IE 9]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 <![endif]-->
 </head>
 <body class="curdef">
 	<div id="kontainer"></div>
+	<div id="options">
+		<a id="colPick" href="#"><img src="img/colwheel.png" alt="color" title="CHANGE COLOR"></a>
+		<!--<a id="swtchKam" href="#"><img src="img/bakrum/camrot60.png" alt="camera" title="SWITCH CAMERA"></a>-->
+		<a id="onAud" href="#"><img src="img/bakrum/audoff60.png" alt="audio" title="TURN ON AUDIO"></a>
+		<a id="offAud" class="noneIt2" href="#"><img src="img/bakrum/audon60.png" alt="audio" title="TURN OFF AUDIO"></a>
+	</div> 	
+	<div id="fcp">
+		<!--<div id="fcpOpen">COLOR</div>-->
+		<div id="fcpPick"></div>
+		<div id="fcpSlide"></div>
+	</div>	
+	<div id="fader"></div>
+	<div id="loadr"></div>	
 	<header>
 		<div id="logo"><a href="index.html">THE WEB DESIGNER PRO</a></div>
 		<nav id="nav"><img src="imj/burger.png" alt="MENU">
@@ -53,42 +72,37 @@
 	</header>
 	<div id="services">
 		<div id="content"></div>
-		<a id="x1" href="/" title="close">x</a>
+		<a id="x1" href="carviz.html" title="close">x</a>
 	</div>
 	<div id="portfolio">
 		<div id="content2"></div>
-		<a id="x2" href="/" title="close">x</a>
+		<a id="x2" href="carviz.html" title="close">x</a>
 	</div>	
 	<div id="contact">
 		<div id="content3"></div>
-		<a id="x3" href="/" title="close">x</a>
+		<a id="x3" href="carviz.html" title="close">x</a>
 	</div>		
-<!--	<div id="pinfo">
-		<h1>T H E &nbsp;W E B &nbsp;D E S I G N E R &nbsp;P R O</h1>
+	<!--<div id="pinfo2">
+		<h1>INTO THE FOREST</h1>
+		<h2>Music by: <a style="color:rgba(255,255,255,0.3);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,0.3);" href="http://www.nihilore.com/" target="_blank">Nihilore</a><br><br>'Artifice'</h2>
 	</div>	-->
-	<div id="fader"></div>
-	<div id="loadr"></div>
 	<script type="importmap">
 		{
 			"imports": {
-				"three": "./js/jsm/166/three.module.min.js",
-				"three/addons/": "./js/jsm/166/"
+				"three": "./js/jsm/173/three.module.min.js",
+				"three/addons/": "./js/jsm/173/"
 			}
 		}
 	</script>	
-	<script type="module" src="js/deskm2.js"></script> 
-	<script src="js/nit07042024.js"></script>	
-<!--	<audio id="aud" preload="auto" loop>
-		<source src="aud/oceanflight.mp3" type="audio/mp3">
-		<source src="aud/oceanflight.ogg" type="audio/ogg">
-	</audio>	-->
+	<script type="module" src="js/crvzm.js"></script> 	
+	<script src="js/nit07042024.js"></script>
 	<footer>
 		&copy;2025. <a href="index.html">The Web Designer Pro</a>. <span class="arr">All Rights Reserved</span>
 		<ul class="frt">
 			<!--<li><a href="https://plus.google.com/u/0/108254518562321886242/posts" title="Follow on Google+" target="_blank"><img src="imj/gplus.png" alt="google+"></a></li>-->
 			<li><a href="https://www.linkedin.com/in/armstrong-chiu/" title="Follow on LinkedIn" target="_blank"><img src="imj/linkedin.png" alt="linkedin"></a></li>
-			<li><a href="https://twitter.com/armychiu" title="Follow on X" target="_blank"><img src="imj/twit.png" alt="tweet"></a></li>
-			<li><a href="https://www.facebook.com/sharer/sharer.php?u=https://thewebdesignerpro.com/" title="Share on Facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"><img src="imj/fb.png" alt="fb"></a></li>			
+			<li><a href="https://x.com/armychiu" title="Follow on X" target="_blank"><img src="imj/twit.png" alt="tweet"></a></li>
+			<li><a href="https://www.facebook.com/sharer/sharer.php?u=https://thewebdesignerpro.com/carviz.html" title="Share on Facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"><img src="imj/fb.png" alt="fb"></a></li>			
 		</ul>
 	</footer>
 </body>
@@ -99,6 +113,7 @@
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 	ga('create', 'UA-56179445-1', 'auto');
-	ga('send', 'pageview');
+	ga('send', 'pageview');	
 </script>	
 </html>
+
