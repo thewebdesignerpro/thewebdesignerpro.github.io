@@ -3,4 +3,4 @@
 <p>3D Rendering and Animation</p>
 <p>Graphics Design</p>
 <p>Video Editing</p>
-<p>HTML, CSS, HTML5, CSS3, JavaScript, WebGL [Three.js], GLSL, GSAP animation, WordPress customization, WooCommerce.</p>
+<p>HTML, CSS, HTML5, CSS3, JavaScript, WebGL [Three.js], GLSL, GSAP animation, WordPress customization.</p>
