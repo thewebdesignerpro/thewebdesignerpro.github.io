@@ -655,7 +655,7 @@ function fadeScene() {
 function imgSRCs() {
 	const aImgs = document.getElementsByClassName('lzy'), 
 		  url = 'imj/folio082025/', 
-		  alts = ['Silent Road', 'Bamboo Forest', 'Space Sim', 'Ancient Courtyard', 'Moon Cat', 'The Wanderer', 'Space Man', 'Liminal Suburbs', 'Night City', 'Architectural Visualization', 'Earth Night Lights', 'Bedroom Design', 'Car Visualization', 'Vaporwave', 'Flight', 'The Backrooms', 'Winter', 'Skeletal Animation', 'Moon Lake', 'Dynamic Car Paint', 'Face Morph', 'Lighthouse ( WebGPU )', 'Night Drive ( WebGPU )']; 
+		  alts = ['Silent Road', 'Bamboo Forest', 'Space Sim', 'Ancient Courtyard', 'Moon Cat', 'The Wanderer', 'Space Man', 'Liminal Suburbs', 'Night City', 'Architectural Visualization', 'Earth Night Lights', 'Bedroom Design', 'Car Visualization', 'Vaporwave', 'Flight', 'The Backrooms', 'Winter', 'Skeletal Animation', 'Moon Lake', 'Dynamic Car Paint', 'Face Morph', 'Lighthouse ( WebGPU )', 'Night Drive ( WebGPU )', 'Cyberpunk (WebGPU)']; 
 	
 	for ( let i = 0; i < aImgs.length; i++ ) {	
 		aImgs[i].attributes.title.value = aImgs[i].children[0].attributes.alt.value = alts[i]; 
