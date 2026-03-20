@@ -409,9 +409,9 @@ function addSkybox() {
 		addSea(); 
 		//addSea2(); 
 		//addMountain();
-		addWaterfall();
+		//addWaterfall();
 		
-		addFog(); 
+		//addFog(); 
 		
 		//fadeScene(); 
 	} );
@@ -585,12 +585,14 @@ function addWaterfall() {
 		}); 
 		
 		
+		
+		
 		//fadeScene(); 	
 		
 		//x.terrain.visible = false; 
 	} );
 	
-	addWaterfol(); 
+	
 }
 
 function addWaterfol() {
@@ -712,14 +714,15 @@ function addWaterfol() {
 		//	matr1.roughnessMap = tx2; 
 		//	matr1.needsUpdate = true; 
 		//}); 
-		
+	
+		addWaterfol2(); 	
 		
 		//fadeScene(); 	
 		
 		//x.terrain.visible = false; 
 	} );
 	
-	addWaterfol2(); 
+	
 }
 
 function addWaterfol2() {
@@ -843,6 +846,7 @@ function addWaterfol2() {
 		//	matr1.needsUpdate = true; 
 		//}); 
 		
+		addFog(); 	
 		
 		//fadeScene(); 	
 		
@@ -901,7 +905,14 @@ function addSea() {
 	//const waterUniforms1 = x.sea[1].material.uniforms;
 	//waterUniforms1['size'].value = .02; 
 	
-	fadeScene(); 	
+	
+	addWaterfall();
+	
+	addWaterfol(); 
+		
+	//addFog(); 	
+	
+	//fadeScene(); 	
 	//animFBX(); 
 	
 	//addSun(); 
@@ -1018,7 +1029,7 @@ function addFog() {
 	});  
 		
 	//addSea2(); 
-	//fadeScene(); 
+	fadeScene(); 
 }
 
 	
