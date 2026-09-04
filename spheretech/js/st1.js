@@ -18,6 +18,8 @@ import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 
 
+//import Lenis from 'lenis'; 
+
 const idleTO = 120, florY = -1, ceilY = 140;  
 
 let camera, scene, renderer, clock; 
@@ -95,13 +97,26 @@ function cL(e, aor, cls) {
 	
 }
 
+const lenis = new Lenis({
+	autoRaf: true,
+}); 
+
+//const lenis = new Lenis(); 
+
+// Listen for the scroll event and log the event data
+//lenis.on('scroll', (e) => {
+//	console.log(e);
+//});	
+
 function init() {
 	
 	function $(id) {
 		return document.getElementById(id);
 	}	
+	
 		
 	ui.kontainer = $('kontainer'); 
+	ui.content = $('content'); 
 	
 	//ui.swtchKam = $('swtchKam'); 
 	ui.onAud = $('onAud'); 
@@ -145,7 +160,8 @@ function init() {
 	_.height = window.innerHeight; 
 	
     document.body.style.width = ui.kontainer.style.width = _.width + 'px';
-    document.body.style.height = ui.kontainer.style.height = _.height + 'px';    
+    //document.body.style.height = ui.kontainer.style.height = _.height + 'px';    
+    ui.kontainer.style.height = _.height + 'px';    
 
     //ui.kontainer.style.opacity = 0;		
     ui.kontainer.style.backgroundColor = '#000000';		
@@ -153,7 +169,8 @@ function init() {
 	const fogCol = 0x000000; 
 
 	
-	x.zz = 450; 
+	_.camPosZ = 20; 
+	
 
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: false});
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -186,7 +203,7 @@ function init() {
 	grups[1] = new THREE.Group(); 
 
 	camera = new THREE.PerspectiveCamera( 50, _.width / _.height, .1, 10000 ); 
-	camera.position.set(0, 0, 20); 
+	camera.position.set(0, 0, _.camPosZ); 
 
     x.camGrup.add(camera);		
 	
@@ -230,16 +247,19 @@ function init() {
 	
 	//x.spotLight[0].target = x.target1; 
 
-	x.rotCam = false; 
+	//x.rotCam = false; 
 	
+	_.checkPt = []; 
+	_.zoomIn = true; 
+	_.prevScrollTop = 0; 
 	
 	initBloom(); 
 	
 	
 
 	//fadeScene(); 
-
-	onWindowResize(); 
+	
+	//onWindowResize(); 
 	
 }
 
@@ -266,15 +286,26 @@ function initBloom() {
 function addStars() {
 	
 	//const geometry = new THREE.PlaneGeometry( 35500, 17750 );
-	const geometry = new THREE.PlaneGeometry( 350, 175 );
+	//const geometry = new THREE.PlaneGeometry( 350, 175 );
+	const geometry = new THREE.PlaneGeometry( 400, 200 );
 	const material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 	
 	x.stars = new THREE.Mesh( geometry, material );
 	//x.stars.position.z = -5000;
 	x.stars.position.z = -60;
 
-	grups[0].add( x.stars );
-	scene.add( grups[0] );
+	grups[1].add( x.stars );
+	//scene.add( grups[1] );
+
+	const geometry2 = new THREE.PlaneGeometry( 350, 175 );
+	const material2 = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
+	
+	const dummyP = new THREE.Mesh( geometry2, material2 );
+	dummyP.position.z = 60;
+	dummyP.visible = false; 
+	
+	grups[1].add( dummyP );
+	scene.add( grups[1] );
 
 	
 	const loader = new THREE.TextureLoader(), 
@@ -313,17 +344,32 @@ function addStars() {
 }
 
 function prepSphere() {
-	const geometry = new THREE.IcosahedronGeometry(5, 50 );
+	const geometry = new THREE.IcosahedronGeometry(5, 35 );
 
 	const material = new THREE.MeshStandardMaterial({ color: 0x0055dd, wireframe: true }); 
-
+	material.transparent = true; 
+	//material.opacity = .5; 
+	
 	x.sphere = new THREE.Mesh(geometry, material);
 	grups[0].add(x.sphere);
+	scene.add( grups[0] );
 
 	//x.sphere.position.z = 14.8;
 	//x.sphere.position.z = 5.;
 	
 	//console.log(x.sphere.geometry.attributes.position);	
+	
+	const geometry2 = new THREE.IcosahedronGeometry(4.82, 35 );
+	const material2 = new THREE.MeshLambertMaterial({ color: 0x70a0c0, wireframe: true }); 
+
+	x.sphere2 = new THREE.Mesh(geometry2, material2);
+	grups[0].add(x.sphere2);
+	//scene.add( grups[0] );
+
+	//x.sphere.position.z = 14.8;
+	//x.sphere.position.z = 5.;
+	
+
 	
 	const loader = new THREE.TextureLoader(), 
 		  loader1 = new THREE.TextureLoader(), 
@@ -334,8 +380,8 @@ function prepSphere() {
 		  url2 = 'img/test/', 
 		  fileName = 'test1', 
 		  fileName1 = 'test1_rough', 
-		  fileName2 = 'test1_height', 
-		  fileName3 = 'test1_ao', 
+		  fileName2 = 'test1_alpha', 
+		  fileName3 = 'test1_glow', 
 		  fileName4 = 'test1_disp', 
 		  fileName5 = 'test1_metal', 
 		  frmt = '.jpg'; 
@@ -349,7 +395,7 @@ function prepSphere() {
 		x.sphere.material.color.set(0xffffff); 
 		x.sphere.material.needsUpdate = true; 
 		
-		x.sphere.material.wireframe = false; 
+		x.sphere.material.wireframe = x.sphere2.material.wireframe = false; 
 		
 		fadeScene(); 
 		
@@ -363,6 +409,25 @@ function prepSphere() {
 		x.sphere.material.roughnessMap = tx1; 
 		x.sphere.material.needsUpdate = true; 
 	});
+	
+	loader2.load( url2 + fileName2 + frmt, function(tx2) { 	
+		tx2.wrapS = tx2.wrapT = THREE.RepeatWrapping;    
+		//tx2.wrapS = tx2.wrapT = THREE.MirroredRepeatWrapping;    
+		tx2.repeat.set(8, 4);    	
+	
+		x.sphere.material.alphaMap = tx2; 
+		x.sphere.material.needsUpdate = true; 
+	});
+	
+	//loader2.load( url2 + fileName2 + frmt, function(tx2) { 	
+	//	tx2.wrapS = tx2.wrapT = THREE.RepeatWrapping;    
+	//	//tx2.wrapS = tx2.wrapT = THREE.MirroredRepeatWrapping;    
+	//	tx2.repeat.set(8, 4);    	
+	//
+	//	x.sphere.material.normalScale.set(1.5, 1.5); 
+	//	x.sphere.material.normalMap = tx2; 
+	//	x.sphere.material.needsUpdate = true; 
+	//});
 	
 	//loader2.load( url2 + fileName2 + frmt, function(tx2) { 	
 	//	tx2.wrapS = tx2.wrapT = THREE.RepeatWrapping;    
@@ -384,16 +449,33 @@ function prepSphere() {
 	//	x.sphere.material.needsUpdate = true; 
 	//});
 	
+	loader3.load( url2 + fileName3 + frmt, function(tx3) { 	
+		//tx3.wrapS = tx3.wrapT = THREE.RepeatWrapping;    
+		tx3.wrapS = tx3.wrapT = THREE.MirroredRepeatWrapping;    
+		tx3.repeat.set(2, 1);    	
+		
+		tx3.colorSpace = THREE.SRGBColorSpace;
+	
+		x.sphere2.material.emissive.set(0x70a0c0); 
+		x.sphere2.material.emissiveMap = tx3; 
+		x.sphere2.material.needsUpdate = true; 
+	});
+	
 	loader4.load( url2 + fileName4 + frmt, function(tx4) { 	
 		tx4.wrapS = tx4.wrapT = THREE.RepeatWrapping;    
 		//tx4.wrapS = tx4.wrapT = THREE.MirroredRepeatWrapping;    
 		tx4.repeat.set(8, 4);    	
 	
-		x.sphere.material.bumpScale = -30; 
+		x.sphere.material.bumpScale = 13; 
 		x.sphere.material.bumpMap = tx4; 
 		
+		//x.sphere.material.displacementScale = .5; 
 		x.sphere.material.displacementMap = tx4; 
-		x.sphere.material.needsUpdate = true; 
+		x.sphere.material.needsUpdate = true; 		
+		
+		x.sphere2.material.displacementScale = .9; 
+		x.sphere2.material.displacementMap = tx4; 
+		x.sphere2.material.needsUpdate = true; 
 	});
 	
 	loader5.load( url2 + fileName5 + frmt, function(tx5) { 	
@@ -692,6 +774,10 @@ function fadeScene() {
 			ui.loadr.style.display = "none";	
 			ui.loadr.parentNode.removeChild(ui.loadr);			
  
+			window.scrollY = window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0; 
+			//ui.content.scrollTop = 0; 
+			//window.scrollTo(0, 0); 
+			//ui.content.scrollTo(0, 0);  
 			
         }
 		
@@ -873,7 +959,8 @@ function onWindowResize() {
     _.heightH = _.height / 2;        	
 	
     document.body.style.width = ui.kontainer.style.width = _.width + 'px';
-    document.body.style.height = ui.kontainer.style.height = _.height + 'px';    
+    //document.body.style.height = ui.kontainer.style.height = _.height + 'px';    
+    ui.kontainer.style.height = _.height + 'px';    
 	
 	camera.aspect = _.width / _.height;
 	camera.updateProjectionMatrix();
@@ -882,21 +969,34 @@ function onWindowResize() {
 	
 	_.bloomComposer.setSize(_.width, _.height); 
 
-	x.zz = 450; 
+	//_.camPosZ = 20; 
 	
 	if (_.width > _.height) {
 
 		x.stars.rotation.z = 0; 
 	
-		x.zz = 450;
+		_.camPosZ = 20;
+		//_.camPosZ = (_.width / _.height) * 10;
 		
 	} else {
 
 		x.stars.rotation.z = Math.PI/-2; 
 	
-		x.zz = 600; 
+		_.camPosZ = 30; 
+		//_.camPosZ = (_.height / _.width) * 15;
 		
 	}		
+	
+	_.scrollPtr = Math.round(ui.content.offsetHeight / _.camPosZ); 
+	
+	//console.log(ui.content.offsetHeight); 
+	
+	_.checkPt[0] = Math.round(ui.content.offsetHeight * .25); 
+	_.checkPt[1] = Math.round(ui.content.offsetHeight * .4); 
+	_.checkPt[2] = Math.round(ui.content.offsetHeight * .55); 
+	_.checkPt[3] = Math.round(ui.content.offsetHeight * .85); 
+	_.checkPt[4] = Math.round(ui.content.offsetHeight * .5); 
+	
 	
 	_.idleTimer = 0; 
 	
@@ -941,18 +1041,30 @@ function animate() {
 		
 		if (!clock.running) clock.start(); 
 		const timer = Date.now() * 0.001; 
+		
+		// Best approach for modern development
+		const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		
+	//	console.log(scrollTop); // Outputs the exact pixels scrolled from the top
+		
+		// Targets both elements to ensure compatibility across all rendering modes
+		//document.documentElement.scrollTop = 0;
+		//document.body.scrollTop = 0;		
 
+		_.zoomIn = (_.prevScrollTop > scrollTop) ? false : true; 
+		
 
 		x.sphere.rotation.y = timer * .1;
+		x.sphere2.rotation.y = timer * .1;
 		
-		camera.position.x += (mouseX - camera.position.x) * 1.;
-		camera.position.y += (-mouseY - camera.position.y) * 1.;
+	//	camera.position.x += (mouseX - camera.position.x) * .5;
+	//	camera.position.y += (-mouseY - camera.position.y) * .5;
 		
 		//x.stars.rotation.y = (-mouseX - camera.position.x) * .01; 
 	
 		//starsMaterial.uniforms.time.value = 0;
 		
-		uniforms.u_time.value = clock.getElapsedTime() * .2;
+	//	uniforms.u_time.value = clock.getElapsedTime() * .2;
 		//uniforms.u_time.value = timer * .5;
 		
 	//	if ((x.analyser) && (x.sound.isPlaying)) {
@@ -963,6 +1075,99 @@ function animate() {
 	//		//uniforms.u_frequency.value = 30.;			
 	//	}
 
+		
+		camera.position.z = _.camPosZ - scrollTop / _.scrollPtr; 
+		
+	//	if (scrollTop < _.checkPt[4]) {
+			grups[0].rotation.x = (scrollTop / ui.content.offsetHeight) * 2.2; 
+			grups[1].rotation.x = (scrollTop / ui.content.offsetHeight) * .8; 
+	//	} 
+	//	else {
+	//		grups[0].rotation.x = 2.5 - (scrollTop / ui.content.offsetHeight) * 2.5; 
+	//	}
+		
+	//	if (scrollTop < _.checkPt[4]) {
+	//		camera.rotation.x = (scrollTop / ui.content.offsetHeight) * .8; 
+	//	} else {
+	//		camera.rotation.x = .8 - (scrollTop / ui.content.offsetHeight) * .8; 
+	//	}
+		
+		if (scrollTop > _.checkPt[2]) {
+			x.sphere.position.x = Math.sin(timer*100) * .1;
+			x.sphere.position.z = Math.cos(timer*100) * .05;
+		}
+		
+		//console.log(scrollTop / ui.content.offsetHeight); 
+		
+	//	if (_.zoomIn) {
+	//		//if (camera.rotation.x < (Math.PI/8)) camera.rotation.x += .01; 
+	//		camera.rotation.x = (camera.rotation.x < (Math.PI/4)) ? (camera.rotation.x += .008) : (Math.PI/4); 
+	//		grups[0].rotation.x = (grups[0].rotation.x < (Math.PI/3)) ? (grups[0].rotation.x += .008) : (Math.PI/3); 
+	//	} else {
+	//		//if (camera.rotation.x > 0) camera.rotation.x -= .01; 
+	//		camera.rotation.x = (camera.rotation.x > 0) ? (camera.rotation.x -= .008) : (0); 
+	//		grups[0].rotation.x = (grups[0].rotation.x > 0) ? (grups[0].rotation.x -= .008) : (0); 
+	//	}		
+
+	//	if (_.prevScrollTop != scrollTop) {
+	//			
+	//		
+	//		
+	//		//console.log(_.checkPt[0]); 
+	//		
+	//
+	//		
+	//		switch (true) {
+	//			case (scrollTop < _.checkPt[0]):
+	//				camera.rotation.x = (camera.rotation.x > 0) ? (camera.rotation.x -= .008) : (0); 
+	//				grups[0].rotation.x = (grups[0].rotation.x > 0) ? (grups[0].rotation.x -= .008) : (0); 
+	//			
+	//				break; 
+	//				
+	//			case ((scrollTop >= _.checkPt[0]) && (scrollTop < _.checkPt[1])):
+	//				//camera.rotation.x = (_.zoomIn) ? (camera.rotation.x + .05) : (camera.rotation.x - .05); 
+	//				//camera.rotation.x = scrollTop / 5000; 
+	//				
+	//				if (_.zoomIn) {
+	//					//if (camera.rotation.x < (Math.PI/8)) camera.rotation.x += .01; 
+	//					camera.rotation.x = (camera.rotation.x < (Math.PI/8)) ? (camera.rotation.x += .008) : (Math.PI/8); 
+	//					grups[0].rotation.x = (grups[0].rotation.x < (Math.PI/3)) ? (grups[0].rotation.x += .008) : (Math.PI/3); 
+	//				} else {
+	//					//if (camera.rotation.x > 0) camera.rotation.x -= .01; 
+	//					camera.rotation.x = (camera.rotation.x > 0) ? (camera.rotation.x -= .008) : (0); 
+	//					grups[0].rotation.x = (grups[0].rotation.x > 0) ? (grups[0].rotation.x -= .008) : (0); 
+	//				}
+	//				
+	//				console.log(camera.rotation.x); 
+	//			
+	//				break;
+	//				
+	//			case ((scrollTop >= _.checkPt[1]) && (scrollTop < _.checkPt[2])): 
+	//				camera.rotation.x = (camera.rotation.x < (Math.PI/8)) ? (camera.rotation.x += .008) : (Math.PI/8);
+	//				grups[0].rotation.x = (grups[0].rotation.x < (Math.PI/3)) ? (grups[0].rotation.x += .008) : (Math.PI/3);
+	//
+	//				break;
+	//				
+	//			default:
+	//				
+	//		}		
+	//	}		
+	
+	
+	
+		//let y0 = x.sphere2.material.emissiveMap.offset.y + .001;   
+		//
+		//if (y0 >= 1) y0 = 0; 
+		////if (y1 >= 1) y1 = 0; 
+		
+		x.sphere2.material.emissiveMap.offset.x = Math.sin(timer*.5); 		
+		x.sphere2.material.emissiveMap.offset.y = Math.cos(timer*.2); 		
+		//x.sphere2.material.emissiveMap.offset.y = y0; 		
+		//x.sphere2.material.alphaMap.offset.y = y1; 	
+		
+		
+		
+		_.prevScrollTop = scrollTop;
 		
 		
 		
@@ -1009,6 +1214,9 @@ function animate() {
 		}
 		
 	}	
+	
+	//lenis.raf(time); 
+	//lenis.animate(); 	
 	
     requestAnimationFrame(animate); 	
 	
