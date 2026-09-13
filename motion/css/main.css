@@ -1,0 +1,314 @@
+/**
+ * author Armstrong "Army" Chiu
+ * URL: https://thewebdesignerpro.com/
+ */
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('fonts/Bebas-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'amblelight';
+    src: url('fonts/Amble-Light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#theCanvas {
+	position: relative;
+	width: 100%; 
+	height: 100%; 
+}
+ 
+
+html, body {
+	box-sizing: border-box;
+}
+
+body {
+	height: auto;
+	overflow-x: hidden; 	
+	overflow-y: visible; 	
+	/*scroll-behavior: smooth; */	
+}
+
+body, #kontainer {
+	margin: 0;
+	width: 100vw;
+	background: #000; 
+}
+
+#kontainer {
+	position: sticky;
+	top: 0; 
+	left: 0; 	
+	height: 100vh;
+	overflow: hidden;	
+	/*opacity: 0;*/
+}
+
+#kontainer > div {
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	display: none; 	
+	width: 100%;
+	height: 100%;	
+	background-size: cover; 	
+	background-position: center; 
+}
+
+#kontainer > div:first-child {
+	display: block; 
+	background-image: url('../frames/Temp-00001.webp'); 
+}	
+
+#kontainer > div.blockIt {
+	display: block; 	
+}	
+	
+#kontainer > div.noneIt {
+	display: none; 	
+}	
+
+#content {
+	position: relative; 
+	width: 100vw;
+	height: 400vh;	
+	/*overflow: hidden;*/
+	z-index: 9; 
+}
+
+	
+canvas {
+	display: block;
+	width: 100%;
+	height: 100%
+}
+
+#dummy {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 9000px;
+}
+
+@media (hover:none), (hover:on-demand) {
+	#dummy {
+		left: -9000px;
+	}
+}
+
+@supports(padding: max(0px)) {
+	@media (hover:none), (hover:on-demand) {
+		@media screen and (orientation: portrait) {
+			#dummy {
+				padding-bottom: constant(safe-area-inset-bottom);
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+		}
+	}
+}
+
+
+/* Motion start */
+
+#vid {
+	position: absolute; 
+	width: auto;
+	height: 100vh;
+	aspect-ratio: 16 / 9;	
+	min-width: 100vw; 
+	
+	left: 50%;
+	transform: translateX(-50%); /* Pulls the wider div perfectly back to center */
+	
+	z-index: 1; 
+}
+
+#vid > video {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover; /* Ensures the video fills the area cleanly */
+	pointer-events: none;
+}
+
+#vid > video::-webkit-media-controls-panel {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+
+/* Motion end */
+
+
+@media screen and (orientation: landscape) {
+
+	@media (hover:none), (hover:on-demand) {
+
+	}
+}
+
+@media (hover:none), (hover:on-demand) {
+	/*	iPad (not pro) styles	 */
+	@media only screen and (width : 1024px) and (height : 768px) {
+
+	}
+
+	@media only screen and (width : 768px) and (height : 1024px) {
+
+	}
+
+	/*	iPad Pro styles	 */
+	@media only screen and (width : 1366px) and (height : 1024px) {
+
+	}
+
+	@media only screen and (width : 1024px) and (height : 1366px) {
+
+	}
+
+	@media screen and (orientation: portrait) {
+
+	}
+}
+
+
+
+
+
+
+
+/* bakrums */
+#options {
+	display: block; 
+	position: absolute; 
+	top: 43%; 
+	right: 1.5%; 
+	width: 60px; 
+	height: auto; 
+	background: transparent; 
+	border: 0; 
+	margin: 0; 
+	padding: 0; 
+	z-index: 1000; 
+}
+
+#options a {
+	display: block; 
+}	
+
+#options img {
+	width: 60px; 
+	max-width: 60px; 
+	margin: 10px 0; 
+	opacity: .65; 
+}
+
+#options img:hover {
+	opacity: .95; 
+}	
+
+
+#fader {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #eee;
+	z-index: 1100; 
+}
+	
+#loadr {
+	position: absolute; 
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto; 
+	width: 50px;
+	height: 50px;
+	border: 5px solid;
+	border-color: #5e5e5e transparent;
+	border-radius: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rttn 2s linear infinite;
+	z-index: 1200; 
+}
+
+#loadr.paus {
+	animation-play-state: paused; 
+}
+	
+@keyframes rttn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+
+
+
+.hideIt {
+	visibility: hidden; 
+}
+
+.noneIt {
+	display: none; 
+}
+
+.noneIt2 {
+	display: none !important; 
+}
+
+
+
+/* Misc */
+
+#logo {
+	position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+#logo > a {
+	font: 2vw 'bebasregular'; 
+	font-size: clamp(1.7rem, 2vw, 2.4rem); 	
+	/*font-variant: small-caps; */
+	text-transform: uppercase; 	
+	color: rgb(255 255 255 / 40%); 
+	text-decoration: none; 	
+}	
+
+#logo > a:hover {
+	color: rgb(255 255 255 / 100%); 
+	text-decoration: underline; 	
+}	
+
+
+@media screen and (orientation: portrait) {
+	#options {
+		right: 2%; 
+		width: 45px;
+	}
+	
+	#options img {
+		width: 45px; 	
+	}
+	
+	#logo {
+		font-size: 4vw; 
+		font-size: clamp(1.2rem, 4vw, 2rem); 
+	}	
+}	
+
